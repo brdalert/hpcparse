@@ -1,3 +1,5 @@
+#Description: Parser for reading in 
+
 import csv
 from job import Job
 import re
@@ -33,45 +35,49 @@ class FileParser:
         self.__lineCount = lineCount
         self.__start = start
         regex_h_rt = re.compile('h_rt=*')
-        with open(self.__fileName, 'r', newline='') as inputFile:
-            records = csv.DictReader(inputFile, fieldnames=dictValues, delimiter=':')
-            for row in records:
-                try:
-                    if self.__lineCount != None and self.__count == int(self.__lineCount):
-                        break
-                    if self.__count < self.__start:
-                        continue
-                    self.__count += 1
-                    username = row['owner']
-                    jobID = row['job_id']
-                    date = str(datetime.utcfromtimestamp(int(row['submission_time'])))
-                    if date[:4] =='1970':
-                        continue
-                    duration_actual = row['ru_wallclock']
-                    mem_used = str(int(float(row['ru_maxrss']) / 1024))
-                    l = list(filter(regex_h_rt.search, row['catagory'].split(" ")))[0]
-                    resources = dict(item.split('=') for item in l.split(','))
-                    wclimit = str(int(resources['h_rt']) / 60)
-                    req_mem = mem_parse(resources['memory'])
-                    req_mem_per_cpu = '1'
-                    if row['granted_pe'] == "NONE":
-                        tasks = '1'
-                        cpus_per_task = '1'
-                        self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
-                    elif row['granted_pe'] == "single":
-                        tasks = '1'
-                        cpus_per_task = row['slots']
-                        self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
-                    else:
-                        temp = row['granted_pe'].split("-")
-                        if temp[1] == 'spread' or temp[1] == 'fill':
+        try:
+            with open(self.__fileName, 'r', newline='') as inputFile:
+                records = csv.DictReader(inputFile, fieldnames=dictValues, delimiter=':')
+                for row in records:
+                    try:
+                        if self.__lineCount != None and self.__count == int(self.__lineCount):
+                            break
+                        if self.__count < self.__start:
                             continue
-                        else:
-                            tasks = temp[1]
-                            cpus_per_task = str(int(int(row['slots'])/int(tasks)))
+                        self.__count += 1
+                        username = row['owner']
+                        jobID = row['job_id']
+                        date = str(datetime.utcfromtimestamp(int(row['submission_time'])))
+                        if date[:4] =='1970':
+                            continue
+                        duration_actual = row['ru_wallclock']
+                        mem_used = str(int(float(row['ru_maxrss']) / 1024))
+                        l = list(filter(regex_h_rt.search, row['catagory'].split(" ")))[0]
+                        resources = dict(item.split('=') for item in l.split(','))
+                        wclimit = str(int(resources['h_rt']) / 60)
+                        req_mem = mem_parse(resources['memory'])
+                        req_mem_per_cpu = '1'
+                        if row['granted_pe'] == "NONE":
+                            tasks = '1'
+                            cpus_per_task = '1'
                             self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
-                except:
-                    print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
+                        elif row['granted_pe'] == "single":
+                            tasks = '1'
+                            cpus_per_task = row['slots']
+                            self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
+                        else:
+                            temp = row['granted_pe'].split("-")
+                            if temp[1] == 'spread' or temp[1] == 'fill':
+                                continue
+                            else:
+                                tasks = temp[1]
+                                cpus_per_task = str(int(int(row['slots'])/int(tasks)))
+                                self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
+                    except:
+                        print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
+        except:
+            print("error opening File please check filename")
+            return
         return self.__joblist
     
     def SLURM_Parser(self, fileName, lineCount, start):
@@ -79,27 +85,35 @@ class FileParser:
         self.__fileName = fileName
         self.__lineCount = lineCount
         self.__start = start
-        with open(self.__fileName, 'r', newline='') as inputFile:
-            records = csv.DictReader(inputFile, delimiter='|')
-            for row in records:
-                if self.__lineCount != None and self.__count == int(self.__lineCount):
-                        break
-                if self.__count <= self.__start:
-                        continue
-                self.__count += 1
-                username = row['User']
-                jobID = row['JobID']
-                if not jobID.isdigit():
-                    continue
-                date = row['Submit']
-                mem_used = row['MaxRSS']
-                tasks = row['NTasks']
-                wclimit = row['TimelimitRaw']
-                duration_actual = str(100)
-                if row['ReqMem'][-1] == 'c':
-                    req_mem_per_cpu = mem_parse(row['ReqMem'][:-1])
-                    self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu))
-                else:
-                    req_mem = mem_parse(row['ReqMem'][:-1])
-                    self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem))
+        try:
+            with open(self.__fileName, 'r', newline='') as inputFile:
+                records = csv.DictReader(inputFile, delimiter='|')
+                for row in records:
+                    try:
+                        if self.__lineCount != None and self.__count == int(self.__lineCount):
+                                break
+                        if self.__count <= self.__start:
+                                continue
+                        self.__count += 1
+
+                        username = row['User']
+                        jobID = row['JobID']
+                        if not jobID.isdigit():
+                            continue
+                        date = row['Submit']
+                        mem_used = row['MaxRSS']
+                        tasks = row['NTasks']
+                        wclimit = row['TimelimitRaw']
+                        duration_actual = str(100)
+                        if row['ReqMem'][-1] == 'c':
+                            req_mem_per_cpu = mem_parse(row['ReqMem'][:-1])
+                            self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu))
+                        else:
+                            req_mem = mem_parse(row['ReqMem'][:-1])
+                            self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem))
+                    except:
+                        print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
+        except:
+            print("error opening File please check filename")
+            return
         return self.__joblist
