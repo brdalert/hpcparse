@@ -1,7 +1,7 @@
 #Description: Parser for reading in 
 
 import csv
-from job import Job
+import job
 import re
 from datetime import datetime
 
@@ -95,9 +95,10 @@ class FileParser:
                         if self.__count <= self.__start:
                                 continue
                         self.__count += 1
-
-                        username = row['User']
-                        jobID = row['JobID']
+                        if row['User']:
+                            username = row['User']
+                        if row['JobID']:
+                            jobID = row['JobID']
                         if not jobID.isdigit():
                             continue
                         date = row['Submit']
