@@ -1,438 +1,422 @@
 class SlurmJob:
-    def __init__(self=None, job_id=None, user=None, cpu_time=None, run_time=None, start=None, end=None, exit_code=None, max_rss=None, max_vm=None,
-                    n_cpu=None, num_tasks=None, queue=None, req_mem=None, account=None, AdminComment=None, AllocCPUS=None, AllocGRES=None,
-                    AllocNodes=None, AllocTRES=None, AssocID=None, AveCPU=None, AveCPUFreq=None, AveDiskRead=None, AveDiskWrite=None,
-                    AvePages=None, AveRSS=None, AveVMSize=None, BlockID=None, Cluster=None, Comment=None, ConsumedEnergy=None, ConsumedEnergyRaw=None,
-                    CPUTime=None, CPUTimeRAW=None, DerivedExitCode=None, Elapsed=None, ElapsedRaw=None, Eligible=None, End=None, ExitCode=None,
-                    GID=None, Group=None, JobID=None, JobIDRaw=None, JobName=None, Layout=None, MaxDiskRead=None, MaxDiskReadNode=None,
-                    MaxDiskReadTask=None, MaxDiskWrite=None, MaxDiskWriteNode=None, MaxDiskWriteTask=None, MaxPages=None, MaxPagesNode=None,
-                    MaxPagesTask=None, MaxRSS=None, MaxRSSNode=None, MaxRSSTask=None, MaxVMSize=None, MaxVMSizeNode=None, MaxVMSizeTask=None,
-                    McsLabel=None, MinCPU=None, MinCPUNode=None, MinCPUTask=None, NCPUS=None, NNodes=None, NodeList=None, NTasks=None,
-                    Priority=None, Partition=None, QOS=None, QOSRAW=None, ReqCPUFreq=None, ReqCPUFreqMin=None, ReqCPUFreqMax=None,
-                    ReqCPUFreqGov=None, ReqCPUS=None, ReqGRES=None, ReqMem=None, ReqNodes=None, ReqTRES=None, Reservation=None,
-                    ReservationId=None, Reserved=None, ResvCPU=None, ResvCPURAW=None, Start=None, State=None, Submit=None, Suspended=None,
-                    SystemCPU=None, SystemComment=None, Timelimit=None, TimelimitRaw=None, TotalCPU=None, TRESUsageInAve=None,
-                    TRESUsageInMax=None, TRESUsageInMaxNode=None, TRESUsageInMaxTask=None, TRESUsageInMin=None, TRESUsageInMinNode=None,
-                    TRESUsageInMinTask=None, TRESUsageInTot=None, TRESUsageOutAve=None, TRESUsageOutMax=None, TRESUsageOutMaxNode=None,
-                    TRESUsageOutMaxTask=None, TRESUsageOutMin=None, TRESUsageOutMinNode=None, TRESUsageOutMinTask=None, TRESUsageOutTot=None,
-                    UID=None, User=None, UserCPU=None, WCKey=None, WCKeyID=None, WorkDir=None):
-        self.Account = account
-        self.AdminComment = AdminComment
-        self.AllocCPUS = AllocCPUS
-        self.AllocGRES = AllocGRES
-        self.AllocNodes = AllocNodes
-        self.AllocTRES = AllocTRES
-        self.AssocID = AssocID
-        self.AveCPU = AveCPU
-        self.AveCPUFreq = AveCPUFreq
-        self.AveDiskRead = AveDiskRead
-        self.AveDiskWrite = AveDiskWrite
-        self.AvePages = AvePages
-        self.AveRSS = AveRSS
-        self.AveVMSize = AveVMSize
-        self.BlockID = BlockID
-        self.Cluster = Cluster
-        self.Comment = Comment
-        self.ConsumedEnergy = ConsumedEnergy
-        self.ConsumedEnergyRaw = ConsumedEnergyRaw
-        self.CPUTime = CPUTime
-        self.CPUTimeRAW = CPUTimeRAW
-        self.DerivedExitCode = DerivedExitCode
-        self.Elapsed = Elapsed
-        self.ElapsedRaw = ElapsedRaw
-        self.Eligible = Eligible
-        self.End = End
-        self.ExitCode = ExitCode
-        self.GID = GID
-        self.Group = Group
-        self.JobID = JobID
-        self.JobIDRaw = JobIDRaw
-        self.JobName = JobName
-        self.Layout = Layout
-        self.MaxDiskRead = MaxDiskRead
-        self.MaxDiskReadNode = MaxDiskReadNode
-        self.MaxDiskReadTask = MaxDiskReadTask
-        self.MaxDiskWrite = MaxDiskWrite
-        self.MaxDiskWriteNode = MaxDiskWriteNode
-        self.MaxDiskWriteTask = MaxDiskWriteTask
-        self.MaxPages = MaxPages 
-        self.MaxPagesNode = MaxPagesNode
-        self.MaxPagesTask = MaxPagesTask
-        self.MaxRSS = MaxRSS
-        self.MaxRSSNode = MaxRSSNode
-        self.MaxRSSTask = MaxRSSTask
-        self.MaxVMSize = MaxVMSize
-        self.MaxVMSizeNode = MaxVMSizeNode
-        self.MaxVMSizeTask = MaxVMSizeTask
-        self.McsLabel = McsLabel
-        self.MinCPU = MinCPU
-        self.MinCPUNode = MinCPUNode
-        self.MinCPUTask = MinCPUTask
-        self.NCPUS = NCPUS
-        self.NNodes = NNodes
-        self.NodeList = NodeList
-        self.NTasks = NTasks
-        self.Priority = Priority
-        self.Partition = Partition
-        self.QOS = QOS
-        self.QOSRAW = QOSRAW
-        self.ReqCPUFreq = ReqCPUFreq
-        self.ReqCPUFreqMin = ReqCPUFreqMin
-        self.ReqCPUFreqMax = ReqCPUFreqMax
-        self.ReqCPUFreqGov = ReqCPUFreqGov
-        self.ReqCPUS = ReqCPUS
-        self.ReqGRES = ReqGRES
-        self.ReqMem = ReqMem
-        self.ReqNodes = ReqNodes
-        self.ReqTRES = ReqTRES
-        self.Reservation = Reservation
-        self.ReservationId = ReservationId
-        self.Reserved = Reserved
-        self.ResvCPU = ResvCPU
-        self.ResvCPURAW = ResvCPURAW
-        self.Start = Start
-        self.State = State
-        self.Submit = Submit
-        self.Suspended = Suspended
-        self.SystemCPU = SystemCPU
-        self.SystemComment = SystemComment
-        self.Timelimit = Timelimit
-        self.TimelimitRaw = TimelimitRaw
-        self.TotalCPU = TotalCPU
-        self.TRESUsageInAve = TRESUsageInAve
-        self.TRESUsageInMax = TRESUsageInMax
-        self.TRESUsageInMaxNode = TRESUsageInMaxNode
-        self.TRESUsageInMaxTask = TRESUsageInMaxTask
-        self.TRESUsageInMin = TRESUsageInMin
-        self.TRESUsageInMinNode = TRESUsageInMinNode
-        self.TRESUsageInMinTask = TRESUsageInMinTask
-        self.TRESUsageInTot = TRESUsageInTot
-        self.TRESUsageOutAve = TRESUsageOutAve
-        self.TRESUsageOutMax = TRESUsageOutMax
-        self.TRESUsageOutMaxNode = TRESUsageOutMaxNode
-        self.TRESUsageOutMaxTask = TRESUsageOutMaxTask
-        self.TRESUsageOutMin = TRESUsageOutMin
-        self.TRESUsageOutMinNode = TRESUsageOutMinNode
-        self.TRESUsageOutMinTask = TRESUsageOutMinTask
-        self.TRESUsageOutTot = TRESUsageOutTot
-        self.UID = UID
-        self.User = User
-        self.UserCPU = UserCPU
-        self.WCKey = WCKey
-        self.WCKeyID = WCKeyID
-        self.WorkDir = WorkDir
+    def __init__(self):
+        self.__Account              = None
+        self.__AdminComment         = None
+        self.__AllocCPUS            = None
+        self.__AllocGRES            = None
+        self.__AllocNodes           = None
+        self.__AllocTRES            = None
+        self.__AssocID              = None
+        self.__AveCPU               = None
+        self.__AveCPUFreq           = None
+        self.__AveDiskRead          = None
+        self.__AveDiskWrite         = None
+        self.__AvePages             = None
+        self.__AveRSS               = None
+        self.__AveVMSize            = None
+        self.__BlockID              = None
+        self.__Cluster              = None
+        self.__Comment              = None
+        self.__ConsumedEnergy       = None
+        self.__ConsumedEnergyRaw    = None
+        self.__CPUTime              = None
+        self.__CPUTimeRAW           = None
+        self.__DerivedExitCode      = None
+        self.__Elapsed              = None
+        self.__ElapsedRaw           = None
+        self.__Eligible             = None
+        self.__End                  = None
+        self.__ExitCode             = None
+        self.__GID                  = None
+        self.__Group                = None
+        self.__JobID                = None
+        self.__JobIDRaw             = None
+        self.__JobName              = None
+        self.__Layout               = None
+        self.__MaxDiskRead          = None
+        self.__MaxDiskReadNode      = None
+        self.__MaxDiskReadTask      = None
+        self.__MaxDiskWrite         = None
+        self.__MaxDiskWriteNode     = None
+        self.__MaxDiskWriteTask     = None
+        self.__MaxPages             = None 
+        self.__MaxPagesNode         = None
+        self.__MaxPagesTask         = None
+        self.__MaxRSS               = None
+        self.__MaxRSSNode           = None
+        self.__MaxRSSTask           = None
+        self.__MaxVMSize            = None
+        self.__MaxVMSizeNode        = None
+        self.__MaxVMSizeTask        = None
+        self.__McsLabel             = None
+        self.__MinCPU               = None
+        self.__MinCPUNode           = None
+        self.__MinCPUTask           = None
+        self.__NCPUS                = None
+        self.__NNodes               = None
+        self.__NodeList             = None
+        self.__NTasks               = None
+        self.__Priority             = None
+        self.__Partition            = None
+        self.__QOS                  = None
+        self.__QOSRAW               = None
+        self.__ReqCPUFreq           = None
+        self.__ReqCPUFreqMin        = None
+        self.__ReqCPUFreqMax        = None
+        self.__ReqCPUFreqGov        = None
+        self.__ReqCPUS              = None
+        self.__ReqGRES              = None
+        self.__ReqMem               = None
+        self.__ReqNodes             = None
+        self.__ReqTRES              = None
+        self.__Reservation          = None
+        self.__ReservationId        = None
+        self.__Reserved             = None
+        self.__ResvCPU              = None
+        self.__ResvCPURAW           = None
+        self.__Start                = None
+        self.__State                = None
+        self.__Submit               = None
+        self.__Suspended            = None
+        self.__SystemCPU            = None
+        self.__SystemComment        = None
+        self.__Timelimit            = None
+        self.__TimelimitRaw         = None
+        self.__TotalCPU             = None
+        self.__TRESUsageInAve       = None
+        self.__TRESUsageInMax       = None
+        self.__TRESUsageInMaxNode   = None
+        self.__TRESUsageInMaxTask   = None
+        self.__TRESUsageInMin       = None
+        self.__TRESUsageInMinNode   = None
+        self.__TRESUsageInMinTask   = None
+        self.__TRESUsageInTot       = None
+        self.__TRESUsageOutAve      = None
+        self.__TRESUsageOutMax      = None
+        self.__TRESUsageOutMaxNode  = None
+        self.__TRESUsageOutMaxTask  = None
+        self.__TRESUsageOutMin      = None
+        self.__TRESUsageOutMinNode  = None
+        self.__TRESUsageOutMinTask  = None
+        self.__TRESUsageOutTot      = None
+        self.__UID                  = None
+        self.__User                 = None
+        self.__UserCPU              = None
+        self.__WCKey                = None
+        self.__WCKeyID              = None
+        self.__WorkDir              = None
 
     def set_Account(self, x):
-        self.Account = x
+        self.__Account = x
 
     def set_AdminComment(self, x):
-        self.AdminComment = x
+        self.__AdminComment = x
 
     def set_AllocCPUS(self, x):
-        self.AllocCPUS = x
+        self.__AllocCPUS = x
 
     def set_AllocGRES(self, x):
-        self.AllocGRES = x
+        self.__AllocGRES = x
 
     def set_AllocNodes(self, x):
-        self.AllocNodes = x
+        self.__AllocNodes = x
 
     def set_AllocTRES(self, x):
-        self.AllocTRES = x
+        self.__AllocTRES = x
 
     def set_AssocID(self, x):
-        self.AssocID = x
+        self.__AssocID = x
 
     def set_AveCPU(self, x):
-        self.AveCPU = x
+        self.__AveCPU = x
 
     def set_AveCPUFreq(self, x):
-        self.AveCPUFreq = x
+        self.__AveCPUFreq = x
 
     def set_AveDiskRead(self, x):
-        self.AveDiskRead = x
+        self.__AveDiskRead = x
 
     def set_AveDiskWrite(self, x):
-        self.AveDiskWrite = x
+        self.__AveDiskWrite = x
 
     def set_AvePages(self, x):
-        self.AvePages = x
+        self.__AvePages = x
 
     def set_AveRSS(self, x):
-        self.AveRSS = x
+        self.__AveRSS = x
 
     def set_AveVMSize(self, x):
-        self.AveVMSize = x
+        self.__AveVMSize = x
 
     def set_BlockID(self, x):
-        self.BlockID = x
+        self.__BlockID = x
 
     def set_Cluster(self, x):
-        self.Cluster = x
+        self.__Cluster = x
 
     def set_Comment(self, x):
-        self.Comment = x
+        self.__Comment = x
 
     def set_ConsumedEnergy(self, x):
-        self.ConsumedEnergy = x
+        self.__ConsumedEnergy = x
 
     def set_ConsumedEnergyRaw(self, x):
-        self.ConsumedEnergyRaw = x
+        self.__ConsumedEnergyRaw = x
 
     def set_CPUTime(self, x):
-        self.CPUTime = x
+        self.__CPUTime = x
 
     def set_CPUTimeRAW(self, x):
-        self.CPUTimeRAW = x
+        self.__CPUTimeRAW = x
 
     def set_DerivedExitCode(self, x):
-        self.DerivedExitCode = x
+        self.__DerivedExitCode = x
 
     def set_Elapsed(self, x):
-        self.Elapsed = x
+        self.__Elapsed = x
 
     def set_ElapsedRaw(self, x):
-        self.ElapsedRaw = x
+        self.__ElapsedRaw = x
 
     def set_Eligible(self, x):
-        self.Eligible = x
+        self.__Eligible = x
 
     def set_End(self, x):
-        self.End = x
+        self.__End = x
 
     def set_ExitCode(self, x):
-        self.ExitCode = x
+        self.__ExitCode = x
 
     def set_GID(self, x):
-        self.GID = x
+        self.__GID = x
 
     def set_Group(self, x):
-        self.Group = x
+        self.__Group = x
 
     def set_JobID(self, x):
-        self.JobID = x
+        self.__JobID = x
 
     def set_JobIDRaw(self, x):
-        self.JobIDRaw = x
+        self.__JobIDRaw = x
 
     def set_JobName(self, x):
-        self.JobName = x
+        self.__JobName = x
 
     def set_Layout(self, x):
-        self.Layout = x
+        self.__Layout = x
 
     def set_MaxDiskRead(self, x):
-        self.MaxDiskRead = x
+        self.__MaxDiskRead = x
 
     def set_MaxDiskReadNode(self, x):
-        self.MaxDiskReadNode = x
+        self.__MaxDiskReadNode = x
 
     def set_MaxDiskReadTask(self, x):
-        self.MaxDiskReadTask = x
+        self.__MaxDiskReadTask = x
 
     def set_MaxDiskWrite(self, x):
-        self.MaxDiskWrite = x
+        self.__MaxDiskWrite = x
 
     def set_MaxDiskWriteNode(self, x):
-        self.MaxDiskWriteNode = x
+        self.__MaxDiskWriteNode = x
 
     def set_MaxDiskWriteTask(self, x):
-        self.MaxDiskWriteTask = x
+        self.__MaxDiskWriteTask = x
 
     def set_MaxPages(self, x):
-        self.MaxPages = x
+        self.__MaxPages = x
 
     def set_MaxPagesNode(self, x):
-        self.MaxPagesNode = x
+        self.__MaxPagesNode = x
 
     def set_MaxPagesTask(self, x):
-        self.MaxPagesTask = x
+        self.__MaxPagesTask = x
 
     def set_MaxRSS(self, x):
-        self.MaxRSS = x
+        self.__MaxRSS = x
 
     def set_MaxRSSNode(self, x):
-        self.MaxRSSNode = x
+        self.__MaxRSSNode = x
 
     def set_MaxRSSTask(self, x):
-        self.MaxRSSTask = x
+        self.__MaxRSSTask = x
 
     def set_MaxVMSize(self, x):
-        self.MaxVMSize = x
+        self.__MaxVMSize = x
 
     def set_MaxVMSizeNode(self, x):
-        self.MaxVMSizeNode = x
+        self.__MaxVMSizeNode = x
 
     def set_MaxVMSizeTask(self, x):
-        self.MaxVMSizeTask = x
+        self.__MaxVMSizeTask = x
 
     def set_McsLabel(self, x):
-        self.McsLabel = x
+        self.__McsLabel = x
 
     def set_MinCPU(self, x):
-        self.MinCPU = x
+        self.__MinCPU = x
 
     def set_MinCPUNode(self, x):
-        self.MinCPUNode = x
+        self.__MinCPUNode = x
 
     def set_MinCPUTask(self, x):
-        self.MinCPUTask = x
+        self.__MinCPUTask = x
 
     def set_NCPUS(self, x):
-        self.NCPUS = x
+        self.__NCPUS = x
 
     def set_NNodes(self, x):
-        self.NNodes = x
+        self.__NNodes = x
 
     def set_NodeList(self, x):
-        self.NodeList = x
+        self.__NodeList = x
 
     def set_NTasks(self, x):
-        self.NTasks = x
+        self.__NTasks = x
 
     def set_Priority(self, x):
-        self.Priority = x
+        self.__Priority = x
 
     def set_Partition(self, x):
-        self.Partition = x
+        self.__Partition = x
 
     def set_QOS(self, x):
-        self.QOS = x
+        self.__QOS = x
 
     def set_QOSRAW(self, x):
-        self.QOSRAW = x
+        self.__QOSRAW = x
 
     def set_ReqCPUFreq(self, x):
-        self.ReqCPUFreq = x
+        self.__ReqCPUFreq = x
 
     def set_ReqCPUFreqMin(self, x):
-        self.ReqCPUFreqMin = x
+        self.__ReqCPUFreqMin = x
 
     def set_ReqCPUFreqMax(self, x):
-        self.ReqCPUFreqMax = x
+        self.__ReqCPUFreqMax = x
 
     def set_ReqCPUFreqGov(self, x):
-        self.ReqCPUFreqGov = x
+        self.__ReqCPUFreqGov = x
 
     def set_ReqCPUS(self, x):
-        self.ReqCPUS = x
+        self.__ReqCPUS = x
 
     def set_ReqGRES(self, x):
-        self.ReqGRES = x
+        self.__ReqGRES = x
 
     def set_ReqMem(self, x):
-        self.ReqMem = x
+        self.__ReqMem = x
 
     def set_ReqNodes(self, x):
-        self.ReqNodes = x
+        self.__ReqNodes = x
 
     def set_ReqTRES(self, x):
-        self.ReqTRES = x
+        self.__ReqTRES = x
 
     def set_Reservation(self, x):
-        self.Reservation = x
+        self.__Reservation = x
 
     def set_ReservationId(self, x):
-        self.ReservationId = x
+        self.__ReservationId = x
 
     def set_Reserved(self, x):
-        self.Reserved = x
+        self.__Reserved = x
 
     def set_ResvCPU(self, x):
-        self.ResvCPU = x
+        self.__ResvCPU = x
 
     def set_ResvCPURAW(self, x):
-        self.ResvCPURAW = x
+        self.__ResvCPURAW = x
 
     def set_Start(self, x):
-        self.Start = x
+        self.__Start = x
 
     def set_State(self, x):
-        self.State = x
+        self.__State = x
 
     def set_Submit(self, x):
-        self.Submit = x
+        self.__Submit = x
 
     def set_Suspended(self, x):
-        self.Suspended = x
+        self.__Suspended = x
 
     def set_SystemCPU(self, x):
-        self.SystemCPU = x
+        self.__SystemCPU = x
 
     def set_SystemComment(self, x):
-        self.SystemComment = x
+        self.__SystemComment = x
 
     def set_Timelimit(self, x):
-        self.Timelimit = x
+        self.__Timelimit = x
 
     def set_TimelimitRaw(self, x):
-        self.TimelimitRaw = x
+        self.__TimelimitRaw = x
 
     def set_TotalCPU(self, x):
-        self.TotalCPU = x
+        self.__TotalCPU = x
 
     def set_TRESUsageInAve(self, x):
-        self.TRESUsageInAve = x
+        self.__TRESUsageInAve = x
 
     def set_TRESUsageInMax(self, x):
-        self.TRESUsageInMax = x
+        self.__TRESUsageInMax = x
 
     def set_TRESUsageInMaxNode(self, x):
-        self.TRESUsageInMaxNode = x
+        self.__TRESUsageInMaxNode = x
 
     def set_TRESUsageInMaxTask(self, x):
-        self.TRESUsageInMaxTask = x
+        self.__TRESUsageInMaxTask = x
 
     def set_TRESUsageInMin(self, x):
-        self.TRESUsageInMin = x
+        self.__TRESUsageInMin = x
 
     def set_TRESUsageInMinNode(self, x):
-        self.TRESUsageInMinNode = x
+        self.__TRESUsageInMinNode = x
 
     def set_TRESUsageInMinTask(self, x):
-        self.TRESUsageInMinTask = x
+        self.__TRESUsageInMinTask = x
 
     def set_TRESUsageInTot(self, x):
-        self.TRESUsageInTot = x
+        self.__TRESUsageInTot = x
 
     def set_TRESUsageOutAve(self, x):
-        self.TRESUsageOutAve = x
+        self.__TRESUsageOutAve = x
 
     def set_TRESUsageOutMax(self, x):
-        self.TRESUsageOutMax = x
+        self.__TRESUsageOutMax = x
 
     def set_TRESUsageOutMaxNode(self, x):
-        self.TRESUsageOutMaxNode = x
+        self.__TRESUsageOutMaxNode = x
 
     def set_TRESUsageOutMaxTask(self, x):
-        self.TRESUsageOutMaxTask = x
+        self.__TRESUsageOutMaxTask = x
 
     def set_TRESUsageOutMin(self, x):
-        self.TRESUsageOutMin = x
+        self.__TRESUsageOutMin = x
 
     def set_TRESUsageOutMinNode(self, x):
-        self.TRESUsageOutMinNode = x
+        self.__TRESUsageOutMinNode = x
 
     def set_TRESUsageOutMinTask(self, x):
-        self.TRESUsageOutMinTask = x
+        self.__TRESUsageOutMinTask = x
 
     def set_TRESUsageOutTot(self, x):
-        self.TRESUsageOutTot = x
+        self.__TRESUsageOutTot = x
 
     def set_UID(self, x):
-        self.UID = x
+        self.__UID = x
 
     def set_User(self, x):
-        self.User = x
+        self.__User = x
 
     def set_UserCPU(self, x):
-        self.UserCPU = x
+        self.__UserCPU = x
 
     def set_WCKey(self, x):
-        self.WCKey = x
+        self.__WCKey = x
 
     def set_WCKeyID(self, x):
-        self.WCKeyID = x
+        self.__WCKeyID = x
 
     def set_WorkDir(self, x):
-        self.WorkDir = x
+        self.__WorkDir = x

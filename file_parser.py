@@ -1,7 +1,8 @@
 #Description: Parser for reading in 
 
 import csv
-import job
+import sge_job
+import slurm_job
 import re
 from datetime import datetime
 

@@ -1,52 +1,182 @@
 class SGEJob:
-    def __init__(self, qname=None, hostname=None, group=None, owner=None, job_name=None, job_id=None, account=None, priority=None, submission_time=None, \
-                start_time=None, end_time=None, failed=None, exit_status=None, ru_wallclock=None, ru_utime=None, ru_stime=None, ru_maxrss=None, ru_ixrss=None, ruismrss=None, \
-                ru_idrss=None, ru_isrss=None, ruminflt=None, ru_majflt=None, ru_nswap=None, ru_inblock=None, ru_outblock=None, ru_msgsnd=None, ru_msgrcv=None, ru_nsignals=None, \
-                ru_nvcsw=None, ru_nivcsw=None, project=None, department=None, granted_pe=None, slots=None, task_number=None, cpu=None, mem=None, io=None, catagory=None, iow=None, \
-                pe_taskid=None, maxvmem=None, arid=None, ar_submission_time=None)
-                
-        self.qname              = qname
-        self.hostname           = hostname
-        self.group              = group
-        self.owner              = owner
-        self.job_name           = job_name
-        self.job_id             = job_id
-        self.account            = account
-        self.priority           = priority
-        self.submission_time    = submission_time
-        self.start_time         = start_time
-        self.end_time           = end_time
-        self.failed             = failed
-        self.exit_status        = exit_status
-        self.ru_wallclock       = ru_wallclock
-        self.ru_utime           = ru_utime
-        self.ru_stime           = ru_stime
-        self.ru_maxrss          = ru_maxrss
-        self.ru_ixrss           = ru_ixrss
-        self.ruismrss           = ruismrss
-        self.ru_idrss           = ru_idrss
-        self.ru_isrss           = ru_isrss
-        self.ruminflt           = ruminflt
-        self.ru_majflt          = ru_majflt
-        self.ru_nswap           = ru_nswap
-        self.ru_inblock         = ru_inblock
-        self.ru_outblock        = ru_outblock
-        self.ru_msgsnd          = ru_msgsnd
-        self.ru_msgrcv          = ru_msgrcv
-        self.ru_nsignals        = ru_nsignals
-        self.ru_nvcsw           = ru_nvcsw
-        self.ru_nivcsw          = ru_nivcsw
-        self.project            = project
-        self.department         = department
-        self.granted_pe         = granted_pe
-        self.slots              = slots
-        self.task_number        = task_number
-        self.cpu                = cpu
-        self.mem                = mem
-        self.io                 = io
-        self.catagory           = catagory
-        self.iow                = iow       
-        self.pe_taskid          = pe_taskid
-        self.maxvmem            = maxvmem
-        self.arid               = arid
-        self.ar_submission_time = ar_submission_time
+    def __init__(self):
+        self.__qname              = None
+        self.__hostname           = None
+        self.__group              = None
+        self.__owner              = None
+        self.__job_name           = None
+        self.__job_id             = None
+        self.__account            = None
+        self.__priority           = None
+        self.__submission_time    = None
+        self.__start_time         = None
+        self.__end_time           = None
+        self.__failed             = None
+        self.__exit_status        = None
+        self.__ru_wallclock       = None
+        self.__ru_utime           = None
+        self.__ru_stime           = None
+        self.__ru_maxrss          = None
+        self.__ru_ixrss           = None
+        self.__ruismrss           = None
+        self.__ru_idrss           = None
+        self.__ru_isrss           = None
+        self.__ruminflt           = None
+        self.__ru_majflt          = None
+        self.__ru_nswap           = None
+        self.__ru_inblock         = None
+        self.__ru_outblock        = None
+        self.__ru_msgsnd          = None
+        self.__ru_msgrcv          = None
+        self.__ru_nsignals        = None
+        self.__ru_nvcsw           = None
+        self.__ru_nivcsw          = None
+        self.__project            = None
+        self.__department         = None
+        self.__granted_pe         = None
+        self.__slots              = None
+        self.__task_number        = None
+        self.__cpu                = None
+        self.__mem                = None
+        self.__io                 = None
+        self.__catagory           = None
+        self.__iow                = None       
+        self.__pe_taskid          = None
+        self.__maxvmem            = None
+        self.__arid               = None
+        self.__ar_submission_time = None
+
+    def set_qname(self, x):
+        self.__qname = x
+
+    def set_hostname(self, x):
+        self.__hostname = x
+
+    def set_group(self, x):
+        self.__group = x
+
+    def set_owner(self, x):
+        self.__owner = x
+
+    def set_job_name(self, x):
+        self.__job_name = x
+
+    def set_job_id(self, x):
+        self.__job_id = x
+
+    def set_account(self, x):
+        self.__account = x
+
+    def set_priority(self, x):
+        self.__priority = x
+
+    def set_submission_time(self, x):
+        self.__submission_time = x
+
+    def set_start_time(self, x):
+        self.__start_time = x
+
+    def set_end_time(self, x):
+        self.__end_time = x
+
+    def set_failed(self, x):
+        self.__failed = x
+
+    def set_exit_status(self, x):
+        self.__exit_status = x
+
+    def set_ru_wallclock(self, x):
+        self.__ru_wallclock = x
+
+    def set_ru_utime(self, x):
+        self.__ru_utime = x
+
+    def set_ru_stime(self, x):
+        self.__ru_stime = x
+
+    def set_ru_maxrss(self, x):
+        self.__ru_maxrss = x
+
+    def set_ru_ixrss(self, x):
+        self.__ru_ixrss = x
+
+    def set_ruismrss(self, x):
+        self.__ruismrss = x
+
+    def set_ru_idrss(self, x):
+        self.__ru_idrss = x
+
+    def set_ru_isrss(self, x):
+        self.__ru_isrss = x
+
+    def set_ruminflt(self, x):
+        self.__ruminflt = x
+
+    def set_ru_majflt(self, x):
+        self.__ru_majflt = x
+
+    def set_ru_nswap(self, x):
+        self.__ru_nswap = x
+
+    def set_ru_inblock(self, x):
+        self.__ru_inblock = x
+
+    def set_ru_outblock(self, x):
+        self.__ru_outblock = x
+
+    def set_ru_msgsnd(self, x):
+        self.__ru_msgsnd = x
+
+    def set_ru_msgrcv(self, x):
+        self.__ru_msgrcv = x
+
+    def set_ru_nsignals(self, x):
+        self.__ru_nsignals = x
+
+    def set_ru_nvcsw(self, x):
+        self.__ru_nvcsw = x
+
+    def set_ru_nivcsw(self, x):
+        self.__ru_nivcsw = x
+
+    def set_project(self, x):
+        self.__project = x
+
+    def set_department(self, x):
+        self.__department = x
+
+    def set_granted_pe(self, x):
+        self.__granted_pe = x
+
+    def set_slots(self, x):
+        self.__slots = x
+
+    def set_task_number(self, x):
+        self.__task_number = x
+
+    def set_cpu(self, x):
+        self.__cpu = x
+
+    def set_mem(self, x):
+        self.__mem = x
+
+    def set_io(self, x):
+        self.__io = x
+
+    def set_catagory(self, x):
+        self.__catagory = x
+
+    def set_iow(self, x):
+        self.__iow = x
+
+    def set_pe_taskid(self, x):
+        self.__pe_taskid = x
+
+    def set_maxvmem(self, x):
+        self.__maxvmem = x
+
+    def set_arid(self, x):
+        self.__arid = x
+
+    def set_ar_submission_time(self, x):
+        self.__ar_submission_time = x
