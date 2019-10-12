@@ -48,8 +48,6 @@ class FileParser:
                         username = row['owner']
                         jobID = row['job_id']
                         date = str(datetime.utcfromtimestamp(int(row['submission_time'])))
-                        if date[:4] =='1970':
-                            continue
                         duration_actual = row['ru_wallclock']
                         mem_used = str(int(float(row['ru_maxrss']) / 1024))
                         l = list(filter(regex_h_rt.search, row['catagory'].split(" ")))[0]
