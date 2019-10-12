@@ -1,8 +1,8 @@
 #Description: Parser for reading in 
 
 import csv
-import sge_job
-import slurm_job
+from sge_job import SGEJob
+from slurm_job import SlurmJob
 import re
 from datetime import datetime
 
@@ -35,47 +35,69 @@ class FileParser:
         self.__fileName = fileName
         self.__lineCount = lineCount
         self.__start = start
-        regex_h_rt = re.compile('h_rt=*')
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, fieldnames=dictValues, delimiter=':')
                 for row in records:
                     try:
+                        job = SGEJob()
                         if self.__lineCount != None and self.__count == int(self.__lineCount):
                             break
                         if self.__count < self.__start:
                             continue
                         self.__count += 1
-                        username = row['owner']
-                        jobID = row['job_id']
-                        date = str(datetime.utcfromtimestamp(int(row['submission_time'])))
-                        duration_actual = row['ru_wallclock']
-                        mem_used = str(int(float(row['ru_maxrss']) / 1024))
-                        l = list(filter(regex_h_rt.search, row['catagory'].split(" ")))[0]
-                        resources = dict(item.split('=') for item in l.split(','))
-                        wclimit = str(int(resources['h_rt']) / 60)
-                        req_mem = mem_parse(resources['memory'])
-                        req_mem_per_cpu = '1'
-                        if row['granted_pe'] == "NONE":
-                            tasks = '1'
-                            cpus_per_task = '1'
-                            self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
-                        elif row['granted_pe'] == "single":
-                            tasks = '1'
-                            cpus_per_task = row['slots']
-                            self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
-                        else:
-                            temp = row['granted_pe'].split("-")
-                            if temp[1] == 'spread' or temp[1] == 'fill':
-                                continue
-                            else:
-                                tasks = temp[1]
-                                cpus_per_task = str(int(int(row['slots'])/int(tasks)))
-                                self.__joblist.append(Job(username, jobID, date, duration_actual, mem_used, tasks, wclimit, req_mem_per_cpu=req_mem_per_cpu, req_mem=req_mem, cpus_per_task=cpus_per_task))
+                        job.set_qname = row['qname']
+                        job.set_hostname = row['hostname']
+                        job.set_group = row['group']
+                        job.set_owner = row['owner']
+                        job.set_job_name = row['job_name']
+                        job.set_job_id = row['job_id']
+                        job.set_account = row['account']
+                        job.set_priority = row['priority']
+                        job.set_submission_time = row['submission_time']
+                        job.set_start_time = row['start_time']
+                        job.set_end_time = row['end_time']
+                        job.set_failed = row['failed']
+                        job.set_exit_status = row['exit_status']
+                        job.set_ru_wallclock = row['ru_wallclock']
+                        job.set_ru_utime = row['ru_utime']
+                        job.set_ru_stime = row['ru_stime']
+                        job.set_ru_maxrss = row['ru_maxrss']
+                        job.set_ru_ixrss = row['ru_ixrss']
+                        job.set_ruismrss = row['ruismrss']
+                        job.set_ru_idrss = row['ru_idrss']
+                        job.set_ru_isrss = row['ru_isrss']
+                        job.set_ruminflt = row['ruminflt']
+                        job.set_ru_majflt = row['ru_majflt']
+                        job.set_ru_nswap = row['ru_nswap']
+                        job.set_ru_inblock = row['ru_inblock']
+                        job.set_ru_outblock = row['ru_outblock']
+                        job.set_ru_msgsnd = row['ru_msgsnd']
+                        job.set_ru_msgrcv = row['ru_msgrcv']
+                        job.set_ru_nsignals = row['ru_nsignals']
+                        job.set_ru_nvcsw = row['ru_nvcsw']
+                        job.set_ru_nivcsw = row['ru_nivcsw']
+                        job.set_project = row['project']
+                        job.set_department = row['department']
+                        job.set_granted_pe = row['granted_pe']
+                        job.set_slots = row['slots']
+                        job.set_task_number = row['task_number']
+                        job.set_cpu = row['cpu']
+                        job.set_mem = row['mem']
+                        job.set_io = row['io']
+                        job.set_catagory = row['catagory']
+                        job.set_iow = row['iow']
+                        job.set_pe_taskid = row['pe_task']
+                        job.set_maxvmem = row['maxvmem']
+                        job.set_arid = row['arid']
+                        job.set_ar_submission_time = row['ar_submission_time']
+
+                        self.__joblist.append(job)
+
                     except:
                         print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
         except:
-            print("error opening File please check filename")
+            print("error opening File please check filename and file path")
             return
         return self.__joblist
     
