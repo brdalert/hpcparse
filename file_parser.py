@@ -1,4 +1,4 @@
-#Description: Parser for reading in 
+#Description: Parser for reading in Slurm and SGE Output files
 
 import csv
 from sge_job import SGEJob
@@ -6,7 +6,7 @@ from slurm_job import SlurmJob
 
 def mem_parse(mem):
     if(mem[-1] == 'G' or mem[-1] == 'g'):
-        return str(int(float(mem[:-1]) * 1024))
+        return str(int(float(mem[:-1] * 1024)))
     elif(mem[-1] == 'M' or mem[-1] == 'm'):
         return str(int(float(mem[:-1])))
     else:
@@ -14,7 +14,7 @@ def mem_parse(mem):
 
 class FileParser:
     def __init__(self):
-        self.__fileName = None
+        self.__fileName = ''
         self.__joblist = []
         self.__lineCount = None
         self.__count = 0
@@ -43,51 +43,51 @@ class FileParser:
                         if self.__count < self.__start:
                             continue
                         self.__count += 1
-                        job.set_qname(row['qname'])
-                        job.set_hostname(row['hostname'])
-                        job.set_group(row['group'])
-                        job.set_owner(row['owner'])
-                        job.set_job_name(row['job_name'])
-                        job.set_job_id(row['job_id'])
-                        job.set_account(row['account'])
-                        job.set_priority(row['priority'])
-                        job.set_submission_time(row['submission_time'])
-                        job.set_start_time(row['start_time'])
-                        job.set_end_time(row['end_time'])
-                        job.set_failed(row['failed'])
-                        job.set_exit_status(row['exit_status'])
-                        job.set_ru_wallclock(row['ru_wallclock'])
-                        job.set_ru_utime(row['ru_utime'])
-                        job.set_ru_stime(row['ru_stime'])
-                        job.set_ru_maxrss(row['ru_maxrss'])
-                        job.set_ru_ixrss(row['ru_ixrss'])
-                        job.set_ruismrss(row['ruismrss'])
-                        job.set_ru_idrss(row['ru_idrss'])
-                        job.set_ru_isrss(row['ru_isrss'])
-                        job.set_ruminflt(row['ruminflt'])
-                        job.set_ru_majflt(row['ru_majflt'])
-                        job.set_ru_nswap(row['ru_nswap'])
-                        job.set_ru_inblock(row['ru_inblock'])
-                        job.set_ru_outblock(row['ru_outblock'])
-                        job.set_ru_msgsnd(row['ru_msgsnd'])
-                        job.set_ru_msgrcv(row['ru_msgrcv'])
-                        job.set_ru_nsignals(row['ru_nsignals'])
-                        job.set_ru_nvcsw(row['ru_nvcsw'])
-                        job.set_ru_nivcsw(row['ru_nivcsw'])
-                        job.set_project(row['project'])
-                        job.set_department(row['department'])
-                        job.set_granted_pe(row['granted_pe'])
-                        job.set_slots(row['slots'])
-                        job.set_task_number(row['task_number'])
-                        job.set_cpu(row['cpu'])
-                        job.set_mem(row['mem'])
-                        job.set_io(row['io'])
-                        job.set_catagory(row['catagory'])
-                        job.set_iow(row['iow'])
-                        job.set_pe_taskid(row['pe_task'])
-                        job.set_maxvmem(row['maxvmem'])
-                        job.set_arid(row['arid'])
-                        job.set_ar_submission_time(row['ar_submission_time'])
+                        job.qname = row['qname']
+                        job.hostname = row['hostname']
+                        job.group = row['group']
+                        job.owner = row['owner']
+                        job.job_name = row['job_name']
+                        job.job_id = row['job_id']
+                        job.account = row['account']
+                        job.priority = row['priority']
+                        job.submission_time = row['submission_time']
+                        job.start_time = row['start_time']
+                        job.end_time = row['end_time']
+                        job.failed = row['failed']
+                        job.exit_status = row['exit_status']
+                        job.ru_wallclock = row['ru_wallclock']
+                        job.ru_utime = row['ru_utime']
+                        job.ru_stime = row['ru_stime']
+                        job.ru_maxrss = row['ru_maxrss']
+                        job.ru_ixrss = row['ru_ixrss']
+                        job.ruismrss = row['ruismrss']
+                        job.ru_idrss = row['ru_idrss']
+                        job.ru_isrss = row['ru_isrss']
+                        job.ruminflt = row['ruminflt']
+                        job.ru_majflt = row['ru_majflt']
+                        job.ru_nswap = row['ru_nswap']
+                        job.ru_inblock = row['ru_inblock']
+                        job.ru_outblock = row['ru_outblock']
+                        job.ru_msgsnd = row['ru_msgsnd']
+                        job.ru_msgrcv = row['ru_msgrcv']
+                        job.ru_nsignals = row['ru_nsignals']
+                        job.ru_nvcsw = row['ru_nvcsw']
+                        job.ru_nivcsw = row['ru_nivcsw']
+                        job.project = row['project']
+                        job.department = row['department']
+                        job.granted_pe = row['granted_pe']
+                        job.slots = row['slots']
+                        job.task_number = row['task_number']
+                        job.cpu = row['cpu']
+                        job.mem = row['mem']
+                        job.io = row['io']
+                        job.catagory = row['catagory']
+                        job.iow = row['iow']
+                        job.pe_taskid = row['pe_task']
+                        job.maxvmem = row['maxvmem']
+                        job.arid = row['arid']
+                        job.ar_submission_time = row['ar_submission_time']
 
                         self.__joblist.append(job)
 
@@ -111,224 +111,329 @@ class FileParser:
                         job = SlurmJob()
                         if self.__lineCount != None and self.__count == int(self.__lineCount):
                                 break
-                        if self.__count <= self.__start:
+                        if self.__count < self.__start:
                                 continue
                         self.__count += 1
-                        if row['Account']:
-                            job.set_Account(row['Account'])
-                        if row['AdminComment']:
-                            job.set_AdminComment(row['AdminComment'])
-                        if row['AllocCPUS']:
-                            job.set_AllocCPUS(row['AllocCPUS'])
-                        if row['AllocGRES']:
-                            job.set_AllocGRES(row['AllocGRES'])
-                        if row['AllocNodes']:
-                            job.set_AllocNodes(row['AllocNodes'])
-                        if row['AllocTRES']:
-                            job.set_AllocTRES(row['AllocTRES'])
-                        if row['AssocID']:
-                            job.set_AssocID(row['AssocID'])
-                        if row['AveCPU']:
-                            job.set_AveCPU(row['AveCPU'])
-                        if row['AveCPUFreq']:
-                            job.set_AveCPUFreq(row['AveCPUFreq'])
-                        if row['AveDiskRead']:
-                            job.set_AveDiskRead(row['AveDiskRead'])
-                        if row['AveDiskWrite']:
-                            job.set_AveDiskWrite(row['AveDiskWrite'])
-                        if row['AvePages']:
-                            job.set_AvePages(row['AvePages'])
-                        if row['AveRSS']:
-                            job.set_AveRSS(row['AveRSS'])
-                        if row['AveVMSize']:
-                            job.set_AveVMSize(row['AveVMSize'])
-                        if row['BlockID']:
-                            job.set_BlockID(row['BlockID'])
-                        if row['Cluster']:
-                            job.set_Cluster(row['Cluster'])
-                        if row['Comment']:
-                            job.set_Comment(row['Comment'])
-                        if row['ConsumedEnergy']:
-                            job.set_ConsumedEnergy(row['ConsumedEnergy'])
-                        if row['ConsumedEnergyRaw']:
-                            job.set_ConsumedEnergyRaw(row['ConsumedEnergyRaw'])
-                        if row['CPUTime']:
-                            job.set_CPUTime(row['CPUTime'])
-                        if row['CPUTimeRAW']:
-                            job.set_CPUTimeRAW(row['CPUTimeRAW'])
-                        if row['DerivedExitCode']:
-                            job.set_DerivedExitCode(row['DerivedExitCode'])
-                        if row['Elapsed']:
-                            job.set_Elapsed(row['Elapsed'])
-                        if row['ElapsedRaw']:
-                            job.set_ElapsedRaw(row['ElapsedRaw'])
-                        if row['Eligible']:
-                            job.set_Eligible(row['Eligible'])
-                        if row['End']:
-                            job.set_End(row['End'])
-                        if row['ExitCode']:
-                            job.set_ExitCode(row['ExitCode'])
-                        if row['GID']:
-                            job.set_GID(row['GID'])
-                        if row['Group']:
-                            job.set_Group(row['Group'])
-                        if row['JobID']:
-                            job.set_JobID(row['JobID'])
-                        if row['JobIDRaw']:
-                            job.set_JobIDRaw(row['JobIDRaw'])
-                        if row['JobName']:
-                            job.set_JobName(row['JobName'])
-                        if row['Layout']:
-                            job.set_Layout(row['Layout'])
-                        if row['MaxDiskRead']:
-                            job.set_MaxDiskRead(row['MaxDiskRead'])
-                        if row['MaxDiskReadNode']:
-                            job.set_MaxDiskReadNode(row['MaxDiskReadNode'])
-                        if row['MaxDiskReadTask']:
-                            job.set_MaxDiskReadTask(row['MaxDiskReadTask'])
-                        if row['MaxDiskWrite']:
-                            job.set_MaxDiskWrite(row['MaxDiskWrite'])
-                        if row['MaxDiskWriteNode']:
-                            job.set_MaxDiskWriteNode(row['MaxDiskWriteNode'])
-                        if row['MaxDiskWriteTask']:
-                            job.set_MaxDiskWriteTask(row['MaxDiskWriteTask'])
-                        if row['MaxPages']:
-                            job.set_MaxPages(row['MaxPages'])
-                        if row['MaxPagesNode']:
-                            job.set_MaxPagesNode(row['MaxPagesNode'])
-                        if row['MaxPagesTask']:
-                            job.set_MaxPagesTask(row['MaxPagesTask'])
-                        if row['MaxRSS']:
-                            job.set_MaxRSS(row['MaxRSS'])
-                        if row['MaxRSSNode']:
-                            job.set_MaxRSSNode(row['MaxRSSNode'])
-                        if row['MaxRSSTask']:
-                            job.set_MaxRSSTask(row['MaxRSSTask'])
-                        if row['MaxVMSize']:
-                            job.set_MaxVMSize(row['MaxVMSize'])
-                        if row['MaxVMSizeNode']:
-                            job.set_MaxVMSizeNode(row['MaxVMSizeNode'])
-                        if row['MaxVMSizeTask']:
-                            job.set_MaxVMSizeTask(row['MaxVMSizeTask'])
-                        if row['McsLabel']:
-                            job.set_McsLabel(row['McsLabel'])
-                        if row['MinCPU']:
-                            job.set_MinCPU(row['MinbCPU'])
-                        if row['MinCPUNode']:
-                            job.set_MinCPUNode(row['MinCPUNode'])
-                        if row['MinCPUTask']:
-                            job.set_MinCPUTask(row['MinCPUTask'])
-                        if row['NCPUS']:
-                            job.set_NCPUS(row['NCPUS'])
-                        if row['NNodes']:
-                            job.set_NNodes(row['NNodes'])
-                        if row['NodeList']:
-                            job.set_NodeList(row['NodeList'])
-                        if row['NTasks']:
-                            job.set_NTasks(row['NTasks'])
-                        if row['Priority']:
-                            job.set_Priority(row['Priority'])
-                        if row['Partition']:
-                            job.set_Partition(row['Partition'])
-                        if row['QOS']:
-                            job.set_QOS(row['QOS'])
-                        if row['QOSRAW']:
-                            job.set(row['QOSRAW'])
-                        if row['ReqCPUFreq']:
-                            job.set_ReqCPUFreq(row['ReqCPUFreq'])
-                        if row['ReqCPUFreqMin']:
-                            job.set_ReqCPUFreqMin(row['ReqCPUFreqMin'])
-                        if row['ReqCPUFreqMax']:
-                            job.set_ReqCPUFreqMax(row['ReqCPUFreqMax'])
-                        if row['ReqCPUFreqGov']:
-                            job.set_ReqCPUFreqGov(row['ReqCPUFreqGov'])
-                        if row['ReqCPUS']:
-                            job.set(row['ReqCPUS'])
-                        if row['ReqGRES']:
-                            job.set_ReqGRES(row['ReqGRES'])
-                        if row['ReqMem']:
-                            job.set_ReqMem(row['ReqMem'])
-                        if row['ReqNodes']:
-                            job.set_ReqNodes(row['ReqNodes'])
-                        if row['ReqTRES']:
-                            job.set_ReqTRES(row['ReqTRES'])
-                        if row['Reservation']:
-                            job.set_Reservation(row['Reservation'])
-                        if row['ReservationId']:
-                            job.set_ReservationId(row['ReservationId'])
-                        if row['Reserved']:
-                            job.set_Reserved(row['Reserved'])
-                        if row['ResvCPU']:
-                            job.set_ResvCPU(row['ResvCPU'])
-                        if row['ResvCPURAW']:
-                            job.set_ResvCPURAW(row['ResvCPURAW'])
-                        if row['Start']:
-                            job.set_Start(row['Start'])
-                        if row['State']:
-                            job.set_State(row['State'])
-                        if row['Submit']:
-                            job.set_Submit(row['Submit'])
-                        if row['Suspended']:
-                            job.set_Suspended(row['Suspended'])
-                        if row['SystemCPU']:
-                            job.set_SystemCPU(row['SystemCPU'])
-                        if row['SystemComment']:
-                            job.set_SystemComment(row['SystemComment'])
-                        if row['Timelimit']:
-                            job.set_Timelimit(row['TimeLimit'])
-                        if row['TimelimitRaw']:
-                            job.set_TimelimitRaw(row['TimelimitRaw'])
-                        if row['TotalCPU']:
-                            job.set_TotalCPU(row['TotalCPU'])
-                        if row['TRESUsageInAve']:
-                            job.set_TRESUsageInAve(row['TRESUsageInAve'])
-                        if row['TRESUsageInMax']:
-                            job.set_TRESUsageInMax(row['TRESUsageInMax'])
-                        if row['TRESUsageInMaxNode']:
-                            job.set_TRESUsageInMaxNode(row['TRESUsageInMaxNode'])
-                        if row['TRESUsageInMaxTask']:
-                            job.set_TRESUsageInMaxTask(row['TRESUsageInMaxTask'])
-                        if row['TRESUsageInMin']:
-                            job.set_TRESUsageInMin(row['TRESUsageInMin'])
-                        if row['TRESUsageInMinNode']:
-                            job.set_TRESUsageInMinNode(row['TRESUsageInMinNode'])
-                        if row['TRESUsageInMinTask']:
-                            job.set_TRESUsageInMinTask(row['TRESUsageInMinTask'])
-                        if row['TRESUsageInTot']:
-                            job.set_TRESUsageInTot(row['TRESUsageInTot'])
-                        if row['TRESUsageOutAve']:
-                            job.set_TRESUsageOutAve(row['TRESUsageOutAve'])
-                        if row['TRESUsageOutMax']:
-                            job.set_TRESUsageOutMax(row['TRESUsageOutMax'])
-                        if row['TRESUsageOutMaxNode']:
-                            job.set_TRESUsageOutMAxNode(row['TRESUsageOutMaxNode'])
-                        if row['TRESUsageOutMaxTask']:
-                            job.set_TRESusageOutMaxTask(row['TRESUsageOutMaxTask'])
-                        if row['TRESUsageOutMin']:
-                            job.set_
-                        if row['TRESUsageOutMinNode']:
-                            job.set_TRESUsageOutMinNode(row['TRESUsageOutMinNode'])
-                        if row['TRESUsageOutMinTask']:
-                            job.set_TRESUsageOutMinTask(row['TRESUsageOutMinTask'])
-                        if row['TRESUsageOutTot']:
-                            job.set_TRESUsageOutTot(row['TRESUsageOutTot'])
-                        if row['UID']:
-                            job.set_UID(row['UID'])
-                        if row['User']:
-                            job.set_User(row['User'])
-                        if row['UserCPU']:
-                            job.set_UserCPU(row['UserCPU'])
-                        if row['WCKey']:
-                            job.set_WCKey(row['WCKey'])
-                        if row['WCKeyID']:
-                            job.set_WCKeyID(row['WCKeyID'])
-                        if row['WorkDir']:
-                            job.set_WorkDir(row['WorkDir'])
+                        if 'Account' in row:
+                            job.Account = row['Account']
+                        if 'AdminComment' in row:
+                            job.AdminComment = row['AdminComment']
+
+                        if 'AllocCPUS' in row:
+                            job.AllocCPUS = row['AllocCPUS']
+
+                        if 'AllocGRES' in row:
+                            job.AllocGRES = row['AllocGRES']
+
+                        if 'AllocNodes' in row:
+                            job.AllocNodes = row['AllocNodes']
+
+                        if 'AllocTRES' in row:
+                            job.AllocTRES = row['AllocTRES']
+
+                        if 'AssocID' in row:
+                            job.AssocID = row['AssocID']
+
+                        if 'AveCPU' in row:
+                            job.AveCPU = row['AveCPU']
+
+                        if 'AveCPUFreq' in row:
+                            job.AveCPUFreq = row['AveCPUFreq']
+
+                        if 'AveDiskRead' in row:
+                            job.AveDiskRead = row['AveDiskRead']
+
+                        if 'AveDiskWrite' in row:
+                            job.AveDiskWrite = row['AveDiskWrite']
+
+                        if 'AvePages' in row:
+                            job.AvePages = row['AvePages']
+
+                        if 'AveRSS' in row:
+                            job.AveRSS = row['AveRSS']
+
+                        if 'AveVMSize' in row:
+                            job.AveVMSize = row['AveVMSize']
+
+                        if 'BlockID' in row:
+                            job.BlockID = row['BlockID']
+
+                        if 'Cluster' in row:
+                            job.Cluster = row['Cluster']
+
+                        if 'Comment' in row:
+                            job.Comment = row['Comment']
+
+                        if 'ConsumedEnergy' in row:
+                            job.ConsumedEnergy = row['ConsumedEnergy']
+
+                        if 'ConsumedEnergyRaw' in row:
+                            job.ConsumedEnergyRaw = row['ConsumedEnergyRaw']
+
+                        if 'CPUTime' in row:
+                            job.CPUTime = row['CPUTime']
+
+                        if 'CPUTimeRAW' in row:
+                            job.CPUTimeRAW = row['CPUTimeRAW']
+
+                        if 'DerivedExitCode' in row:
+                            job.DerivedExitCode = row['DerivedExitCode']
+
+                        if 'Elapsed' in row:
+                            job.Elapsed = row['Elapsed']
+
+                        if 'ElapsedRaw' in row:
+                            job.ElapsedRaw = row['ElapsedRaw']
+                            
+                        if 'Eligible' in row:
+                            job.Eligible = row['Eligible']
+
+                        if 'End' in row:
+                            job.End = row['End']
+
+                        if 'ExitCode' in row:
+                            job.ExitCode = row['ExitCode']
+
+                        if 'GID' in row:
+                            job.GID = row['GID']
+
+                        if 'Group' in row:
+                            job.Group = row['Group']
+
+                        if 'JobID' in row:
+                            job.JobID = row['JobID']
+
+                        if 'JobIDRaw' in row:
+                            job.JobIDRaw = row['JobIDRaw']
+
+                        if 'JobName' in row:
+                            job.JobName = row['JobName']
+
+                        if 'Layout' in row:
+                            job.Layout = row['Layout']
+
+                        if 'MaxDiskRead' in row:
+                            job.MaxDiskRead = row['MaxDiskRead']
+
+                        if 'MaxDiskReadNode' in row:
+                            job.MaxDiskReadNode = row['MaxDiskReadNode']
+
+                        if 'MaxDiskReadTask' in row:
+                            job.MaxDiskReadTask = row['MaxDiskReadTask']
+
+                        if 'MaxDiskWrite' in row:
+                            job.MaxDiskWrite = row['MaxDiskWrite']
+
+                        if 'MaxDiskWriteNode' in row:
+                            job.MaxDiskWriteNode = row['MaxDiskWriteNode']
+
+                        if 'MaxDiskWriteTask' in row:
+                            job.MaxDiskWriteTask = row['MaxDiskWriteTask']
+
+                        if 'MaxPages' in row:
+                            job.MaxPages = row['MaxPages']
+
+                        if 'MaxPagesNode' in row:
+                            job.MaxPagesNode = row['MaxPagesNode']
+
+                        if 'MaxPagesTask' in row:
+                            job.MaxPagesTask = row['MaxPagesTask']
+
+                        if 'MaxRSS' in row:
+                            job.MaxRSS = row['MaxRSS']
+
+                        if 'MaxRSSNode' in row:
+                            job.MaxRSSNode = row['MaxRSSNode']
+
+                        if 'MaxRSSTask' in row:
+                            job.MaxRSSTask = row['MaxRSSTask']
+
+                        if 'MaxVMSize' in row:
+                            job.MaxVMSize = row['MaxVMSize']
+
+                        if 'MaxVMSizeNode' in row:
+                            job.MaxVMSizeNode = row['MaxVMSizeNode']
+
+                        if 'MaxVMSizeTask' in row:
+                            job.MaxVMSizeTask = row['MaxVMSizeTask']
+
+                        if 'McsLabel' in row:
+                            job.McsLabel = row['McsLabel']
+
+                        if 'MinCPU' in row:
+                            job.MinCPU = row['MinCPU']
+
+                        if 'MinCPUNode' in row:
+                            job.MinCPUNode = row['MinCPUNode']
+
+                        if 'MinCPUTask' in row:
+                            job.MinCPUTask = row['MinCPUTask']
+
+                        if 'NCPUS' in row:
+                            job.NCPUS = row['NCPUS']
+
+                        if 'NNodes' in row:
+                            job.NNodes = row['NNodes']
+
+                        if 'NodeList' in row:
+                            job.NodeList = row['NodeList']
+
+                        if 'NTasks' in row:
+                            job.NTasks = row['NTasks']
+
+                        if 'Priority' in row:
+                            job.Priority = row['Priority']
+
+                        if 'Partition' in row:
+                            job.Partition = row['Partition']
+
+                        if 'QOS' in row:
+                            job.QOS = row['QOS']
+
+                        if 'QOSRAW' in row:
+                            job.QOSRAW = row['QOSRAW']
+
+                        if 'ReqCPUFreq' in row:
+                            job.ReqCPUFreq = row['ReqCPUFreq']
+
+                        if 'ReqCPUFreqMin' in row:
+                            job.ReqCPUFreqMin = row['ReqCPUFreqMin']
+
+                        if 'ReqCPUFreqMax' in row:
+                            job.ReqCPUFreqMax = row['ReqCPUFreqMax']
+
+                        if 'ReqCPUFreqGov' in row:
+                            job.ReqCPUFreqGov = row['ReqCPUFreqGov']
+
+                        if 'ReqCPUS' in row:
+                            job.ReqCPUS = row['ReqCPUS']
+
+                        if 'ReqGRES' in row:
+                            job.ReqGRES = row['ReqGRES']
+
+                        if 'ReqMem' in row:
+                            job.ReqMem = row['ReqMem']
+
+                        if 'ReqNodes' in row:
+                            job.ReqNodes = row['ReqNodes']
+
+                        if 'ReqTRES' in row:
+                            job.ReqTRES = row['ReqTRES']
+
+                        if 'Reservation' in row:
+                            job.Reservation = row['Reservation']
+
+                        if 'ReservationId' in row:
+                            job.ReservationId = row['ReservationId']
+
+                        if 'Reserved' in row:
+                            job.Reserved = row['Reserved']
+
+                        if 'ResvCPU' in row:
+                            job.ResvCPU = row['ResvCPU']
+
+                        if 'ResvCPURAW' in row:
+                            job.ResvCPURAW = row['ResvCPURAW']
+
+                        if 'Start' in row:
+                            job.Start = row['Start']
+
+                        if 'State' in row:
+                            job.State = row['State']
+
+                        if 'Submit' in row:
+                            job.Submit = row['Submit']
+
+                        if 'Suspended' in row:
+                            job.Suspended = row['Suspended']
+
+                        if 'SystemCPU' in row:
+                            job.SystemCPU = row['SystemCPU']
+
+                        if 'SystemComment' in row:
+                            job.SystemComment = row['SystemComment']
+
+                        if 'Timelimit' in row:
+                            job.Timelimit = row['Timelimit']
+
+                        if 'TimelimitRaw' in row:
+                            job.TimelimitRaw = row['TimelimitRaw']
+
+                        if 'TotalCPU' in row:
+                            job.TotalCPU = row['TotalCPU']
+
+                        if 'TRESUsageInAve' in row:
+                            job.TRESUsageInAve = row['TRESUsageInAve']
+
+                        if 'TRESUsageInMax' in row:
+                            job.TRESUsageInMax = row['TRESUsageInMax']
+
+                        if 'TRESUsageInMaxNode' in row:
+                            job.TRESUsageInMaxNode = row['TRESUsageInMaxNode']
+
+                        if 'TRESUsageInMaxTask' in row:
+                            job.TRESUsageInMaxTask = row['TRESUsageInMaxTask']
+
+                        if 'TRESUsageInMin' in row:
+                            job.TRESUsageInMin = row['TRESUsageInMin']
+
+                        if 'TRESUsageInMinNode' in row:
+                            job.TRESUsageInMinNode = row['TRESUsageInMinNode']
+
+                        if 'TRESUsageInMinTask' in row:
+                            job.TRESUsageInMinTask = row['TRESUsageInMinTask']
+
+                        if 'TRESUsageInTot' in row:
+                            job.TRESUsageInTot = row['TRESUsageInTot']
+
+                        if 'TRESUsageOutAve' in row:
+                            job.TRESUsageOutAve = row['TRESUsageOutAve']
+
+                        if 'TRESUsageOutMax' in row:
+                            job.TRESUsageOutMax = row['TRESUsageOutMax']
+
+                        if 'TRESUsageOutMaxNode' in row:
+                            job.TRESUsageOutMaxNode = row['TRESUsageOutMaxNode']
+
+                        if 'TRESUsageOutMaxTask' in row:
+                            job.TRESUsageOutMaxTask = row['TRESUsageOutMaxTask']
+
+                        if 'TRESUsageOutMin' in row:
+                            job.TRESUsageOutMin = row['TRESUsageOutMin']
+
+                        if 'TRESUsageOutMinNode' in row:
+                            job.TRESUsageOutMinNode = row['TRESUsageOutMinNode']
+
+                        if 'TRESUsageOutMinTask' in row:
+                            job.TRESUsageOutMinTask = row['TRESUsageOutMinTask']
+
+                        if 'TRESUsageOutTot' in row:
+                            job.TRESUsageOutTot = row['TRESUsageOutTot']
+
+                        if 'UID' in row:
+                            job.UID = row['UID']
+
+                        if 'User' in row:
+                            job.User = row['User']
+
+                        if 'UserCPU' in row:
+                            job.UserCPU = row['UserCPU']
+
+                        if 'WCKey' in row:
+                            job.WCKey = row['WCKey']
+
+                        if 'WCKeyID' in row:
+                            job.WCKeyID = row['WCKeyID']
+
+                        if 'WorkDir' in row:
+                            job.WorkDir = row['WorkDir']
 
                         self.__joblist.append(job)
-                    except:
-                        print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
-        except:
-            print("error opening File please check filename")
+                    except Exception as ex:
+                        print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing. the Exact error follows this message: \n')
+                        print(ex)
+        except Exception as ex:
+            print("error opening File please check filename. the Exact error follows this message: \n")
+            print(ex)
             return
         return self.__joblist
