@@ -3,9 +3,6 @@
 import csv
 from sge_job import SGEJob
 from slurm_job import SlurmJob
-import re
-from datetime import datetime
-
 
 def mem_parse(mem):
     if(mem[-1] == 'G' or mem[-1] == 'g'):
