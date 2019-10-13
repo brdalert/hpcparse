@@ -4,14 +4,6 @@ import csv
 from sge_job import SGEJob
 from slurm_job import SlurmJob
 
-def mem_parse(mem):
-    if(mem[-1] == 'G' or mem[-1] == 'g'):
-        return str(int(float(mem[:-1] * 1024)))
-    elif(mem[-1] == 'M' or mem[-1] == 'm'):
-        return str(int(float(mem[:-1])))
-    else:
-        return "1024"
-
 class FileParser:
     def __init__(self):
         self.__fileName = ''
