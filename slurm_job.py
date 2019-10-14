@@ -70,7 +70,7 @@ class SlurmJob:
         self.req_nodes                  = None
         self.req_TRES                   = None
         self.reservation                = None
-        self.reservation_Id              = None
+        self.reservation_Id             = None
         self.reserved                   = None
         self.resv_CPU                   = None
         self.resv_CPU_raw               = None
@@ -94,7 +94,7 @@ class SlurmJob:
         self.TRES_usage_out_ave         = None
         self.TRES_usage_out_max         = None
         self.TRES_usage_out_max_node    = None
-        self.TRES_usage_out_max_task     = None
+        self.TRES_usage_out_max_task    = None
         self.TRES_usage_out_min         = None
         self.TRES_usage_out_min_node    = None
         self.TRES_usage_out_min_task    = None
@@ -139,3 +139,33 @@ class SlurmJob:
                 'TRES_usage_out_min_node':self.TRES_usage_out_min_node, 'TRES_usage_out_min_task':self.TRES_usage_out_min_task,
                 'TRES_usage_out_tot':self.TRES_usage_out_tot, 'UID':self.UID, 'user':self.user, 'user_CPU':self.user_CPU,
                 'WC_key':self.WC_key, 'WC_key_ID':self.WC_key_ID, 'working_dir':self.working_dir}
+
+    def __str__(self):
+        return "Job ( account:{}, admin_comment:{}, alloc_CPUS:{}, alloc_GRES:{}}, alloc_nodes:{}, alloc_TRES:{}, assoc_ID:{}, ave_CPU:{}, \
+                ave_CPU_freq:{}, ave_disk_read:{}, ave_disk_write:{}, ave_pages:{}, ave_RSS:{}, ave_VM_size:{}, block_id:{}, cluster:{}, consumed_energy:{}, \
+                consumed_energy_raw:{}, CPU_time{}, CPU_time_raw:{}  , derived_exit_code:{}, elapsed:{}, elapsed_raw:{}, end:{}, exit_code:{}, \
+                GID:{}, group:{}, job_ID:{}, job_ID_raw:{}, job_name:{}, layout:{}, max_disk_read:{}, max_disk_read_node:{}, max_disk_read_task:{} \
+                max_disk_write:{}, max_disk_write_node:{}, max_disk_write_task:{}, max_pages:{}, max_pages_node:{}, max_pages_task:{}, max_RSS:{}, \
+                max_RSS_node:{}, max_RSS_task:{}, max_VM_size:{}, max_VM_size_node:{}, max_VM_size_task:{}, mcs_label:{}, min_CPU:{}, min_CPU_node:{}, \
+                min_CPU_task:{}, NCPUS:{}, NNodes:{}, node_list:{}, NTasks:{}, priority:{}, partition:{}, QOS:{}, QOS_raw:{}, req_CPU_freq:{}, \
+                req_CPU_freq_min:{}, req_CPU_freq_max:{}, req_CPU_freq_gov:{}, req_CPUS:{}, req_GRES:{}, req_mem:{}, req_nodes:{}, req_TRES:{}, \
+                reservation:{}, reservatio_id:{}, reserved:{}, resv_CPU:{}, resv_CPU_raw:{}, start:{}, state:{}, submit:{}, susspended:{}, system_CPU:{}, \
+                system_comment:{}, time_limit:{}, time_limit_raw:{}, total_CPU:{}, TRES_usage_in_ave:{}, TRES_usage_in_max:{}, TRES_usage_in_max_node:{}, \
+                TRES_usage_in_max_task:{}, TRES_usage_in_min:{}, TRES_usage_in_min_node:{}, TRES_usage_in_min_task:{}, TRES_usage_in_tot:{}, \
+                TRES_usage_out_ave:{}, TRES_usage_out_max:{}, TRES_usage_out_max_node:{}, TRES_usage_out_max_task:{}, TRES_usage_out_min:{}, \
+                TRES_usage_out_min_node:{}, TRES_usage_out_min_task:{}, TRES_usage_out_tot:{}, UID:{}, user:{}, user_CPU:{}, WC_key:{}, \
+                WC_key_ID:{}, working_dir:{} )".format( self.account, self.admin_comment, self.alloc_CPUS, self.alloc_GRES, self.alloc_nodes, self.alloc_TRES, self.assoc_ID,
+                self.ave_CPU, self.ave_CPU_freq, self.ave_disk_read, self.ave_disk_write, self.ave_pages, self.ave_RSS, self.ave_VM_size, self.block_ID, 
+                self.cluster, self.consumed_energy, self.consumed_energy_raw, self.CPU_time, self.CPU_time_raw, self.derived_exit_code, self.elapsed,
+                self.elapsed_raw, self.end, self.exit_code, self.GID, self.group, self.job_ID, self.job_ID_raw, self.job_name, self.layout, self.max_disk_read,
+                self.max_disk_read_node, self.max_disk_read_task, self.max_disk_write, self.max_disk_write_node, self.max_disk_write_task, self.max_pages,
+                self.max_pages_node, self.max_pages_task,  self.max_RSS, self.max_RSS_node, self.max_RSS_task, self.max_VM_size, self.max_VM_size_node, 
+                self.max_VM_size_task, self.mcs_label, self.min_CPU, self.min_CPU_node, self.min_CPU_task, self.NCPUS, self.NNodes, self.node_list, 
+                self.NTasks, self.priority, self.partition, self.QOS_raw, self.QOS_raw, self.req_CPU_freq, self.req_CPU_freq_min, self.req_CPU_freq_max,
+                self.req_CPU_freq_gov, self.req_CPUS, self.req_GRES, self.req_mem, self.req_nodes, self.req_TRES, self.reservation,  self.reservation_Id,
+                self.reserved, self.resv_CPU, self.resv_CPU_raw, self.start, self.state, self.submit, self.suspended, self.system_CPU,  self.system_comment,
+                self.time_limit, self.time_limit_raw, self.total_CPU, self.TRES_usage_in_ave, self.TRES_usage_in_max,self.TRES_usage_in_max_node,
+                self.TRES_usage_in_max_task, self.TRES_usage_in_min, self.TRES_usage_in_min_node, self.TRES_usage_in_min_task, self.TRES_usage_in_tot,
+                self.TRES_usage_out_ave, self.TRES_usage_out_max, self.TRES_usage_out_max_node, self.TRES_usage_out_max_task,self.TRES_usage_out_min,
+                self.TRES_usage_out_min_node, self.TRES_usage_out_min_task, self.TRES_usage_out_tot, self.UID, self.user, self.user_CPU, self.WC_key, 
+                self.WC_key_ID, self.working_dir)
