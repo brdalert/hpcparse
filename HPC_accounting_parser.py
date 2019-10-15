@@ -5,7 +5,7 @@ from sge_job import SGEJob
 from slurm_job import SlurmJob
 from collections import defaultdict
 
-class FileParser:
+class AccountingParser:
     def __init__(self):
         self.__fileName = ''
         self.__joblist = []
