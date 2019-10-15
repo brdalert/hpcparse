@@ -29,6 +29,7 @@ class FileParser:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, fieldnames=dictValues, delimiter=':')
                 for row in records:
+                    row = defaultdict(lambda : None, row)
                     try:
                         job = SGEJob()
                         if self.__lineCount != None and self.__count == int(self.__lineCount):
@@ -77,16 +78,18 @@ class FileParser:
                         job.io = row['io']
                         job.catagory = row['catagory']
                         job.iow = row['iow']
-                        job.pe_taskid = row['pe_task']
+                        job.pe_taskid = row['pe_taskid']
                         job.maxvmem = row['maxvmem']
                         job.arid = row['arid']
                         job.ar_submission_time = row['ar_submission_time']
 
                         self.__joblist.append(job)
 
-                    except:
+                    except Exception as ex:
+                        print(ex)
                         print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
-        except:
+        except Exception as ex:
+            print(ex)
             print("error opening File please check filename and file path")
             return
         return self.__joblist
