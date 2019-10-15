@@ -45,3 +45,6 @@ class SGEJob:
         self.maxvmem            = None
         self.arid               = None
         self.ar_submission_time = None
+    
+    def __str__(self):
+        return "test"

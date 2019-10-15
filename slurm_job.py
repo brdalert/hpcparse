@@ -107,7 +107,7 @@ class SlurmJob:
         self.working_dir                = None
 
     def __str__(self):
-        temp = "Job ( account:{}, admin_comment:{}, alloc_CPUS:{}, alloc_GRES:{}, alloc_nodes:{}, alloc_TRES:{}, assoc_ID:{}, ave_CPU:{}, \
+        return "Job ( account:{}, admin_comment:{}, alloc_CPUS:{}, alloc_GRES:{}, alloc_nodes:{}, alloc_TRES:{}, assoc_ID:{}, ave_CPU:{}, \
                 ave_CPU_freq:{}, ave_disk_read:{}, ave_disk_write:{}, ave_pages:{}, ave_RSS:{}, ave_VM_size:{}, block_id:{}, cluster:{}, consumed_energy:{}, \
                 consumed_energy_raw:{}, CPU_time{}, CPU_time_raw:{}  , derived_exit_code:{}, elapsed:{}, elapsed_raw:{}, end:{}, exit_code:{}, \
                 GID:{}, group:{}, job_ID:{}, job_ID_raw:{}, job_name:{}, layout:{}, max_disk_read:{}, max_disk_read_node:{}, max_disk_read_task:{} \
@@ -135,7 +135,6 @@ class SlurmJob:
                 self.TRES_usage_out_ave, self.TRES_usage_out_max, self.TRES_usage_out_max_node, self.TRES_usage_out_max_task,self.TRES_usage_out_min,
                 self.TRES_usage_out_min_node, self.TRES_usage_out_min_task, self.TRES_usage_out_tot, self.UID, self.user, self.user_CPU, self.WC_key,
                 self.WC_key_ID, self.working_dir)
-        return temp
 
     def __repr__(self):
         return {'account':self.account, 'admin_comment':self.admin_comment, 'alloc_CPUS':self.alloc_CPUS,
