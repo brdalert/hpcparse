@@ -1,9 +1,10 @@
-#Description: Parser for reading in Slurm and SGE Output files
+# Description: Parser for reading in Slurm and SGE Output files
 
 import csv
 from sge_job import SGEJob
 from slurm_job import SlurmJob
 from collections import defaultdict
+
 
 class AccountingParser:
     def __init__(self):
@@ -11,28 +12,33 @@ class AccountingParser:
         self.__joblist = []
         self.__lineCount = None
         self.__count = 0
-    
-
-    
 
     def SGE_Parser(self, fileName, lineCount=None, start=0):
-        #Parse SGE File
-        dictValues = ['qname', 'hostname', 'group', 'owner', 'job_name', 'job_id', 'account', 'priority', 'submission_time', \
-        'start_time', 'end_time', 'failed', 'exit_status', 'ru_wallclock', 'ru_utime', 'ru_stime', 'ru_maxrss', 'ru_ixrss', 'ruismrss', \
-        'ru_idrss', 'ru_isrss', 'ruminflt', 'ru_majflt', 'ru_nswap', 'ru_inblock', 'ru_outblock', 'ru_msgsnd', 'ru_msgrcv', 'ru_nsignals', \
-        'ru_nvcsw', 'ru_nivcsw', 'project', 'department', 'granted_pe', 'slots', 'task_number', 'cpu', 'mem', 'io', 'catagory', 'iow', \
-        'pe_taskid', 'maxvmem', 'arid', 'ar_submission_time']
+        # Parse SGE File
+        dictValues = ['qname', 'hostname', 'group', 'owner', 'job_name',
+                      'job_id', 'account', 'priority', 'submission_time',
+                      'start_time', 'end_time', 'failed', 'exit_status',
+                      'ru_wallclock', 'ru_utime', 'ru_stime', 'ru_maxrss',
+                      'ru_ixrss', 'ruismrss', 'ru_idrss', 'ru_isrss',
+                      'ruminflt', 'ru_majflt', 'ru_nswap', 'ru_inblock',
+                      'ru_outblock', 'ru_msgsnd', 'ru_msgrcv', 'ru_nsignals',
+                      'ru_nvcsw', 'ru_nivcsw', 'project', 'department',
+                      'granted_pe', 'slots', 'task_number', 'cpu', 'mem', 'io',
+                      'catagory', 'iow', 'pe_taskid', 'maxvmem', 'arid',
+                      'ar_submission_time']
         self.__fileName = fileName
         self.__lineCount = lineCount
         self.__start = start
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
-                records = csv.DictReader(inputFile, fieldnames=dictValues, delimiter=':')
+                records = csv.DictReader(inputFile, fieldnames=dictValues,
+                                         delimiter=':')
                 for row in records:
-                    row = defaultdict(lambda : None, row)
+                    row = defaultdict(lambda: None, row)
                     try:
                         job = SGEJob()
-                        if self.__lineCount != None and self.__count == int(self.__lineCount):
+                        if self.__lineCount is not None and self.__count == \
+                                int(self.__lineCount):
                             break
                         if self.__count < self.__start:
                             continue
@@ -87,15 +93,17 @@ class AccountingParser:
 
                     except Exception as ex:
                         print(ex)
-                        print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing:')
+                        print('There was a parsing error on line: ' + str(
+                               self.__count) + '\n skipping line and \
+                               continuing:')
         except Exception as ex:
             print(ex)
             print("error opening File please check filename and file path")
             return
         return self.__joblist
-    
+
     def SLURM_Parser(self, fileName, lineCount=None, start=0):
-        #Parse SLURM File
+        # Parse SLURM File
         self.__fileName = fileName
         self.__lineCount = lineCount
         self.__start = start
@@ -103,15 +111,16 @@ class AccountingParser:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
                 for row in records:
-                    row = defaultdict(lambda : None, row)
+                    row = defaultdict(lambda: None, row)
                     try:
                         job = SlurmJob()
-                        if self.__lineCount != None and self.__count == int(self.__lineCount):
-                                break
+                        if self.__lineCount is not None and self.__count == \
+                                int(self.__lineCount):
+                            break
                         if self.__count < self.__start:
-                                continue
+                            continue
                         self.__count += 1
-                        
+
                         job.account = row['Account']
                         job.admin_comment = row['AdminComment']
                         job.alloc_CPUS = row['AllocCPUS']
@@ -205,11 +214,15 @@ class AccountingParser:
                         job.TRES_usage_in_tot = row['TRESUsageInTot']
                         job.TRES_usage_out_ave = row['TRESUsageOutAve']
                         job.TRES_usage_out_max = row['TRESUsageOutMax']
-                        job.TRES_usage_out_max_node = row['TRESUsageOutMaxNode']
-                        job.TRES_usage_out_max_task = row['TRESUsageOutMaxTask']
+                        job.TRES_usage_out_max_node = \
+                            row['TRESUsageOutMaxNode']
+                        job.TRES_usage_out_max_task = \
+                            row['TRESUsageOutMaxTask']
                         job.TRES_usage_out_min = row['TRESUsageOutMin']
-                        job.TRES_usage_out_min_node = row['TRESUsageOutMinNode']
-                        job.TRES_usage_out_min_task = row['TRESUsageOutMinTask']
+                        job.TRES_usage_out_min_node = \
+                            row['TRESUsageOutMinNode']
+                        job.TRES_usage_out_min_task = \
+                            row['TRESUsageOutMinTask']
                         job.TRES_usage_out_tot = row['TRESUsageOutTot']
                         job.UID = row['UID']
                         job.user = row['User']
@@ -220,10 +233,14 @@ class AccountingParser:
 
                         self.__joblist.append(job)
                     except Exception as ex:
-                        print('There was a parsing error on line: ' + str(self.__count) + '\n skipping line and continuing. the Exact error follows this message: \n')
+                        print('There was a parsing error on line: ' +
+                              str(self.__count) + '\n skipping line and \
+                              continuing. the Exact error follows this \
+                              message: \n')
                         print(ex)
         except Exception as ex:
-            print("error opening File please check filename. the Exact error follows this message: \n")
+            print("error opening File please check filename. the Exact error \
+                follows this message: \n")
             print(ex)
             return
         return self.__joblist
