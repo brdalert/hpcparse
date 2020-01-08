@@ -1,9 +1,24 @@
-# Description: Parser for reading in Slurm and SGE Output files
+"""
+This Class implements a pareser for SLURM and SGE output files.
 
+GPL licensing
+"""
+# Libs
 import csv
+from collections import defaultdict
+
+# Own Modules
 from sge_job import SGEJob
 from slurm_job import SlurmJob
-from collections import defaultdict
+
+__author__ = 'Brandon Dunn'
+__copyright__ = 'Copyright 2019'
+__credits__ = []
+__license__ = 'GPL'
+__version__ = '1.0.0'
+__maintainer__ = 'Brandon Dunn'
+__email__ = 'brdunn@ksu.edu'
+__status__ = 'feature complete'
 
 
 class AccountingParser:
