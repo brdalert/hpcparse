@@ -1,4 +1,4 @@
-class SlurmJob:
+class Job:
     def __init__(self):
         self.account = None
         self.admin_comment = None
@@ -42,9 +42,9 @@ class SlurmJob:
         self.max_pages = None
         self.max_pages_node = None
         self.max_pages_task = None
-        self.max_RSS = None
-        self.max_RSS_node = None
-        self.max_RSS_task = None
+        self.memory = None
+        self.memory_node = None
+        self.memory_task = None
         self.max_VM_size = None
         self.max_VM_size_node = None
         self.max_VM_size_task = None
