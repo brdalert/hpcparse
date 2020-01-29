@@ -57,7 +57,6 @@ class AccountingParser:
                         if self.__count < self.__start:
                             continue
                         self.__count += 1
-                        
                         job.account = row['account']
                         job.alloc_CPUS = row['AllocCPUS']
                         job.alloc_GRES = row['AllocGRES']
@@ -118,7 +117,7 @@ class AccountingParser:
                         job.QOS = row['QOS']
                         job.QOS_raw = row['QOSRAW']
                         job.req_CPU_freq = row['ReqCPUFreq']
-                        job.req_CPU_freq_min =job.account = row['Account']
+                        job.req_CPU_freq_min = job.account = row['Account']
                         job.admin_comment = row['AdminComment']
                         job.alloc_CPUS = row['AllocCPUS']
                         job.alloc_GRES = row['AllocGRES']
@@ -171,7 +170,7 @@ class AccountingParser:
                         job.min_CPU_node = row['MinCPUNode']
                         job.min_CPU_task = row['MinCPUTask']
                         job.NCPUS = row['NCPUS']
-                        job.NNodes = row['NNod row['ReqCPUFreqGov']
+                        job.NNodes = row['ReqCPUFreqGov']
                         job.req_CPUS = row['ReqCPUS']
                         job.req_GRES = row['ReqGRES']
                         job.req_mem = row['ReqMem']
@@ -311,7 +310,7 @@ class AccountingParser:
                         job.QOS = row['QOS']
                         job.QOS_raw = row['QOSRAW']
                         job.req_CPU_freq = row['ReqCPUFreq']
-                        job.req_CPU_freq_min =job.account = row['Account']
+                        job.req_CPU_freq_min = job.account = row['Account']
                         job.admin_comment = row['AdminComment']
                         job.alloc_CPUS = row['AllocCPUS']
                         job.alloc_GRES = row['AllocGRES']
@@ -364,7 +363,7 @@ class AccountingParser:
                         job.min_CPU_node = row['MinCPUNode']
                         job.min_CPU_task = row['MinCPUTask']
                         job.NCPUS = row['NCPUS']
-                        job.NNodes = row['NNod row['ReqCPUFreqGov']
+                        job.NNodes = row['ReqCPUFreqGov']
                         job.req_CPUS = row['ReqCPUS']
                         job.req_GRES = row['ReqGRES']
                         job.req_mem = row['ReqMem']
