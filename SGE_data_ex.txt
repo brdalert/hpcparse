@@ -1,0 +1,45 @@
+qname: batch.q
+hostname: paladin07.beocat
+group: anas_users
+owner: anas
+job_name: RFIL.sh
+job_id: 1128839
+account: sge
+priority: 0
+submission_time: 1360517099
+start_time: 1360522675
+end_time: 1360522827
+failed: 0
+exit_status: 0
+ru_wallclock: 152
+ru_utime: 120.630000
+ru_stime: 0.450000
+ru_maxrss: 738836.000000
+ru_ixrss: 0
+ruismrss: 0
+ru_idrss: 0
+ru_isrss: 0
+ruminflt: 287664
+ru_majflt: 3
+ru_nswap: 0
+ru_inblock: 78080.000000
+ru_outblock: 272
+ru_msgsnd: 0
+ru_msgrcv: 0
+ru_nsignals: 0
+ru_nvcsw: 16573
+ru_nivcsw: 26453
+project: BIOINFORMATICS
+department: defaultdepartment
+granted_pe: None
+slots: 1
+task_number: 149487
+cpu: 121.080000
+mem: 409.111544
+io:0.030000
+catagory:
+iow: 0.000000
+pe_taskid: None
+maxvmem:
+arid: 0
+ar_submission_time: 0

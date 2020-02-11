@@ -105,6 +105,7 @@ class Job:
         self.wc_key = None
         self.wc_key_id = None
         self.working_dir = None
+        self.granted_pe = None
 
     def __str__(self):
         return """Job ( account: {}, admin_comment: {}, alloc_cpuS: {},
