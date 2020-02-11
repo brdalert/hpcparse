@@ -216,6 +216,8 @@ class AccountingParser:
                         job.WC_key = row['WCKey']
                         job.WC_key_ID = row['WCKeyID']
                         job.working_dir = row['WorkDir']
+                        job.granted_pe = row['granted_pe']
+                        job.catagotries = row['catagories']
 
                         self.__joblist.append(job)
 
@@ -409,6 +411,8 @@ class AccountingParser:
                         job.WC_key = row['WCKey']
                         job.WC_key_ID = row['WCKeyID']
                         job.working_dir = row['WorkDir']
+                        job.granted_pe = row['granted_pe']
+                        job.catagotries = row['catagories']
 
                         self.__joblist.append(job)
                     except Exception as ex:
