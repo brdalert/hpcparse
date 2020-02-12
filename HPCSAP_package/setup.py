@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="HPC-scheduler-accounting-parser-brdalert",
-    version="0.0.1",
+    name="HPC-scheduler-accounting-parser",
+    version="0.0.5",
     author="Brandon Dunn",
     author_email="brdunn@ksu.edu",
     description="Package for parsing HPC scheduler account data.",
