@@ -1,2 +1,6 @@
 __pycache__/
 .vscode/*
+*/build/
+*/dist/
+*/HPC_scheduler_accounting_parser.egg-info/
+*/*/*/__pycache__/

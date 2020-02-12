@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: HPC-scheduler-accounting-parser
-Version: 0.0.6
+Version: 0.0.7
 Summary: Package for parsing HPC scheduler account data.
 Home-page: https://gitlab.cs.ksu.edu/brdunn/hpc-scheduler-accounting-parser
 Author: Brandon Dunn
