@@ -8,7 +8,7 @@ import csv
 from collections import defaultdict
 
 # Own Modules
-from job import Job
+from HPCASP_package.job import Job
 
 __author__ = 'Brandon Dunn'
 __copyright__ = 'Copyright 2019'
