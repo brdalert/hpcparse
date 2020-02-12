@@ -1,3 +1,20 @@
+"""
+This Class implements a pareser for SLURM and SGE output files.
+
+GNU GPL3 licensing
+"""
+
+
+__author__ = 'Brandon Dunn'
+__copyright__ = 'Copyright 2019'
+__credits__ = []
+__license__ = 'GPL'
+__version__ = '0.0.1'
+__maintainer__ = 'Brandon Dunn'
+__email__ = 'brdunn@ksu.edu'
+__status__ = 'in development'
+
+
 class Job:
     def __init__(self):
         self.account = None

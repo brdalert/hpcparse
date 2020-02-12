@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="HPC-scheduler-accounting-parser-brdalert",  # Replace with your own username
+    name="HPC-scheduler-accounting-parser-brdalert",
     version="0.0.1",
     author="Brandon Dunn",
     author_email="brdunn@ksu.edu",
@@ -15,7 +15,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU GPLv3",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',

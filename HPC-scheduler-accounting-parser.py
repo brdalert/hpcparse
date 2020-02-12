@@ -1,7 +1,7 @@
 """
 This Class implements a pareser for SLURM and SGE output files.
 
-GPL licensing
+GNU GPL3 licensing
 """
 # Libs
 import csv
