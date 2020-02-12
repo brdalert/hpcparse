@@ -1,5 +1,4 @@
-<h1>HPC-Scheduler-accounting-parser<\h1>
-
-Parser for getting accounting information from HPC schedulers. currently SGE and Slurm are implemented.
+<h1>Project Description<\h1>
+<em>HPC-Scheduler-accounting-parser</em> is a Python library that adds parsing of HPC sechudler accounting data 
 
 <h2>Prerequisites<\h2>
