@@ -4,3 +4,4 @@ __pycache__/
 */dist/
 */HPC_scheduler_accounting_parser.egg-info/
 */*/*/__pycache__/
+*.csv

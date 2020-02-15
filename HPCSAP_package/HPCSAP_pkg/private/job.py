@@ -52,8 +52,8 @@ class Job:
         self.min_cpu = None
         self.min_cpu_node = None
         self.min_cpu_task = None
-        self.NcpuS = None
-        self.NNodes = None
+        self.num_cpus = None
+        self.num_nodes = None
         self.node_list = None
         self.num_tasks = None
         self.priority = None
