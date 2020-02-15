@@ -65,7 +65,7 @@ class Job:
         self.req_cpu_freq_max = None
         self.req_cpu_freq_gov = None
         self.req_cpuS = None
-        self.req_GRES = None
+        self.req_gres = None
         self.req_mem = None
         self.req_nodes = None
         self.req_tres = None
