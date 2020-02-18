@@ -1,0 +1,10 @@
+README.md
+setup.py
+5.egg-info/PKG-INFO
+5.egg-info/SOURCES.txt
+5.egg-info/dependency_links.txt
+5.egg-info/top_level.txt
+HPCSAP_pkg/__init__.py
+HPCSAP_pkg/hpcsa_parser.py
+HPCSAP_pkg/private/__init__.py
+HPCSAP_pkg/private/job.py
