@@ -138,7 +138,8 @@ class Job:
         tres_usage_out_max_node: {}, tres_usage_out_max_task: {},
         tres_usage_out_min: {}, tres_usage_out_min_node: {},
         tres_usage_out_min_task: {}, tres_usage_out_tot: {}, uid: {}, user: {},
-        user_cpu: {}, wc_key: {}, wc_key_id: {}, working_dir: {} )"""\
+        user_cpu: {}, wc_key: {}, wc_key_id: {}, working_dir: {},
+        granted_pe: {}, catagories: {})"""\
             .format(self.account, self.admin_comment, self.alloc_cpuS,
                     self.alloc_GRES, self.alloc_nodes, self.alloc_tres,
                     self.assoc_id, self.ave_cpu, self.ave_cpu_freq,
@@ -177,7 +178,7 @@ class Job:
                     self.tres_usage_out_min_node, self.tres_usage_out_min_task,
                     self.tres_usage_out_tot, self.uid, self.user,
                     self.user_cpu, self.wc_key, self.wc_key_id,
-                    self.working_dir)
+                    self.working_dir, self.granted_pe, self.catagotries)
 
     def __repr__(self):
         return {'account': self.account, 'admin_comment': self.admin_comment,
@@ -254,4 +255,6 @@ class Job:
                 'tres_usage_out_tot': self.tres_usage_out_tot, 'uid': self.uid,
                 'user': self.user, 'user_cpu': self.user_cpu,
                 'wc_key': self.wc_key, 'wc_key_id': self.wc_key_id,
-                'working_dir': self.working_dir}
+                'working_dir': self.working_dir,
+                'granted_pe': self.granted_pe,
+                'catagories': self.catagotries}

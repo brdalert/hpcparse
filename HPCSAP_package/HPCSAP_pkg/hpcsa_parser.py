@@ -8,7 +8,7 @@ import csv
 from collections import defaultdict
 
 # Own Modules
-from .private.job import Job
+from .job import Job
 
 __author__ = 'Brandon Dunn'
 __copyright__ = 'Copyright 2019'

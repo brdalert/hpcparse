@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="5",
-    version="0.2.3",
+    name="hpc-sap",
+    version="0.0.1",
     author="Brandon Dunn",
     author_email="brdunn@ksu.edu",
     description="Package for parsing HPC scheduler account data.",

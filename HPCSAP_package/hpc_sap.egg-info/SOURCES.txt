@@ -1,0 +1,9 @@
+README.md
+setup.py
+HPCSAP_pkg/__init__.py
+HPCSAP_pkg/hpcsa_parser.py
+HPCSAP_pkg/job.py
+hpc_sap.egg-info/PKG-INFO
+hpc_sap.egg-info/SOURCES.txt
+hpc_sap.egg-info/dependency_links.txt
+hpc_sap.egg-info/top_level.txt

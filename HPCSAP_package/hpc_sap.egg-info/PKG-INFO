@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
-Name: 5
-Version: 0.2.3
+Name: hpc-sap
+Version: 0.0.1
 Summary: Package for parsing HPC scheduler account data.
 Home-page: https://gitlab.cs.ksu.edu/brdunn/hpc-scheduler-accounting-parser
 Author: Brandon Dunn
