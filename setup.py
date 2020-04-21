@@ -18,7 +18,7 @@ Development Status :: 4 - Beta
 Environment :: Console
 Intended Audience :: System Administrators
 License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-Operating System :: OS Independent
+Operating System :: POSIX :: Linux
 Programming Language :: Python :: 3
 Programming Language :: Python :: 3.0
 Programming Language :: Python :: 3.1

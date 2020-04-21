@@ -14,20 +14,21 @@ __author__ = 'Brandon Dunn'
 __copyright__ = 'Copyright 2019'
 __credits__ = []
 __license__ = 'GPL'
-__version__ = '0.0.1'
+__version__ = '0.0.8'
 __maintainer__ = 'Brandon Dunn'
 __email__ = 'brdunn@ksu.edu'
 __status__ = 'in development'
 
 
+# Accounting Parser Class Definition
 class AccountingParser:
     def __init__(self):
-        self.__fileName = ''
-        self.__joblist = []
-        self.__lineCount = None
         self.__count = 0
 
-    def SGE_Parser(self, fileName, lineCount=None, start=0):
+    # SGE parser Method Definition
+    def SGE_Parser(self, file_path, line_count=0, start=0):
+
+        joblist = []
         # Parse SGE File
         dictValues = ['qname', 'hostname', 'group', 'owner', 'job_name',
                       'job_id', 'account', 'priority', 'submission_time',
@@ -40,21 +41,17 @@ class AccountingParser:
                       'granted_pe', 'slots', 'task_number', 'cpu', 'mem', 'io',
                       'catagory', 'iow', 'pe_taskid', 'maxvmem', 'arid',
                       'ar_submission_time']
-        self.__fileName = fileName
-        self.__lineCount = lineCount
-        self.__start = start
         try:
-            with open(self.__fileName, 'r', newline='') as inputFile:
+            with open(file_path, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, fieldnames=dictValues,
                                          delimiter=':')
                 for row in records:
                     row = defaultdict(lambda: None, row)
                     try:
                         job = Job()
-                        if self.__lineCount is not None and self.__count == \
-                                int(self.__lineCount):
+                        if line_count and self.__count == line_count:
                             break
-                        if self.__count < self.__start:
+                        if self.__count < start:
                             continue
                         self.__count += 1
                         job.account = row['account']
@@ -219,35 +216,35 @@ class AccountingParser:
                         job.granted_pe = row['granted_pe']
                         job.catagotries = row['catagories']
 
-                        self.__joblist.append(job)
-
+                        joblist.append(job)
                     except Exception as ex:
                         print(ex)
                         print('There was a parsing error on line: ' + str(
                                self.__count) + '\n skipping line and \
                                continuing:')
         except Exception as ex:
+            print('error opening File path:' + str(file_path) + ', please check\
+                filename and file path: the Exact error \
+                follows this message: \n')
             print(ex)
-            print("error opening File please check filename and file path")
             return
-        return self.__joblist
+        return joblist
 
-    def SLURM_Parser(self, fileName, lineCount=None, start=0):
+    def SLURM_Parser(self, file_path, line_count=0, start=0):
+
+        joblist = []
         # Parse SLURM File
-        self.__fileName = fileName
-        self.__lineCount = lineCount
-        self.__start = start
         try:
-            with open(self.__fileName, 'r', newline='') as inputFile:
+            with open(file_path, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
                 for row in records:
                     row = defaultdict(lambda: None, row)
                     try:
                         job = Job()
-                        if self.__lineCount is not None and self.__count == \
-                                int(self.__lineCount):
+                        if line_count and self.__count == line_count:
+                            print('count issues')
                             break
-                        if self.__count < self.__start:
+                        if self.__count < start:
                             continue
                         self.__count += 1
 
@@ -414,7 +411,8 @@ class AccountingParser:
                         job.granted_pe = row['granted_pe']
                         job.catagotries = row['catagories']
 
-                        self.__joblist.append(job)
+                        joblist.append(job)
+                        self.__count += 1
                     except Exception as ex:
                         print('There was a parsing error on line: ' +
                               str(self.__count) + '\n skipping line and \
@@ -422,8 +420,9 @@ class AccountingParser:
                               message: \n')
                         print(ex)
         except Exception as ex:
-            print("error opening File please check filename. the Exact error \
-                follows this message: \n")
+            print('error opening File path:' + str(file_path) + ', please check\
+                filename and file path: the Exact error \
+                follows this message: \n')
             print(ex)
             return
-        return self.__joblist
+        return joblist
