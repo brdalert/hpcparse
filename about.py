@@ -24,7 +24,7 @@ __title__ = "hpcsap"
 __summary__ = "Package for parsing HPC scheduler account data"
 __uri__ = "https://gitlab.cs.ksu.edu/brdunn/hpc-scheduler-accounting-parser"
 
-__version__ = "0.1.11"
+__version__ = "0.1.14"
 
 if base_dir is not None and os.path.exists(os.path.join(base_dir, ".commit")):
     with open(os.path.join(base_dir, ".commit")) as fp:

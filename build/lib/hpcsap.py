@@ -10,24 +10,21 @@ from collections import defaultdict
 # Own Modules
 from job import Job
 
-__author__ = 'Brandon Dunn'
-__copyright__ = 'Copyright 2019'
-__credits__ = []
-__license__ = 'GPL'
-__version__ = '0.1.11'
-__maintainer__ = 'Brandon Dunn'
-__email__ = 'brdunn@ksu.edu'
-__status__ = 'in development'
-
 
 # Accounting Parser Class Definition
 class AccountingParser:
-    def __init__(self):
+    def __init__(self, filepath, num_lines=0, start=0):
         self.__count = 0
+        self.__filepath = filepath
+        self.__num_lines = num_lines
+        self.__start = start
 
     # Method for Parsing SGE Accounting Files
-    def SGE_Parser(self, file_path, num_lines=None, start=0):
-
+    def sge_Parser(self):
+        """
+        sge_parser()
+        Parse SGE accounting files and return a list of jobs.
+        """
         # initialize joblist
         joblist = []
 
@@ -47,19 +44,22 @@ class AccountingParser:
 
         # Reading in the csv file and creating job objects
         try:
-            with open(file_path, 'r', newline='') as inputFile:
+            with open(self.__filepath, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, fieldnames=dictValues,
                                          delimiter=':')
                 for row in records:
+                    # Use default dict to put None in where items are missing
                     row = defaultdict(lambda: None, row)
                     try:
+                        # Initialize new job object
                         job = Job()
-                        if num_lines is not None and num_lines > 0 and \
-                           self.__count == num_lines:
+                        # Break if we have reached the number of lines to read.
+                        if self.__num_lines > 0 and\
+                           self.__count == self.__num_lines:
                             break
 
-                        if start >= 0 and self.__count < start:
-                            start -= 1
+                        if self.__start >= 0 and self.__count < self.__start:
+                            self.__start -= 1
                             continue
 
                         self.__count += 1
@@ -183,7 +183,7 @@ class AccountingParser:
                                self.__count) + '\n skipping line and \
                                continuing:')
         except Exception as ex:
-            print('error opening File path:' + str(file_path) + ', please check\
+            print('error opening File path:' + str(self.__filepath) + ', please check\
                 filename and file path: the Exact error \
                 follows this message: \n')
             print(ex)
@@ -191,24 +191,24 @@ class AccountingParser:
         return joblist
 
     # Method for parsing SLURM accounting files
-    def SLURM_Parser(self, file_path, num_lines=None, start=0):
+    def slurm_Parser(self):
 
         # Initializing joblist
         joblist = []
 
         # Reading in SLURM csv accounting file
         try:
-            with open(file_path, 'r', newline='') as inputFile:
+            with open(self.__filepath, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
                 for row in records:
                     row = defaultdict(lambda: None, row)
                     try:
-                        if num_lines is not None and num_lines >= 0 and \
-                           self.__count == num_lines:
+                        if self.__num_lines > 0 and \
+                           self.__count == self.__num_lines:
                             break
 
-                        if self.__count < start:
-                            start -= 1
+                        if self.__start >= 0 and self.__count < self.__start:
+                            self.__start -= 1
                             continue
 
                         self.__count += 1
@@ -334,8 +334,9 @@ class AccountingParser:
                               continuing. the Exact error follows this \
                               message: \n')
                         print(ex)
+                        return
         except Exception as ex:
-            print('error opening File path:' + str(file_path) + ', please check\
+            print('error opening File path:' + str(self.__filepath) + ', please check\
                 filename and file path: the Exact error \
                 follows this message: \n')
             print(ex)
