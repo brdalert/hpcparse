@@ -1,17 +1,17 @@
 from setuptools import setup, find_packages
-import hpcsap
+import about
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup_args = dict(
     name="hpcsapb",
-    version=hpcsap.__version__,
-    author="Brandon Dunn",
-    author_email="brdunn@ksu.edu",
-    description="Package for parsing HPC scheduler account data.",
+    version=about.__version__,
+    author=about.__author__,
+    author_email=about.__email__,
+    description=about.__summary__,
     long_description=long_description,
-    url="https://gitlab.cs.ksu.edu/brdunn/hpc-scheduler-accounting-parser",
+    url=about.__uri__,
     platforms="any",
     classifiers="""\
 Development Status :: 4 - Beta

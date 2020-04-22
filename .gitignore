@@ -5,7 +5,7 @@
 .vscode/*
 
 .build/*
-
+**/_build
 # Setuptools distribution folder.
 .dist/*
 
@@ -15,3 +15,4 @@
 
 # Testing csv file
 *.csv
+*.ps1
