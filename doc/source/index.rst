@@ -11,7 +11,8 @@ Documentation for :mod:`hpcsap` module
    :caption: Pages:
 
    overview
-   
+   objects
+   example
    license
 
 
