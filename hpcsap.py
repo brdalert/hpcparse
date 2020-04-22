@@ -14,7 +14,7 @@ __author__ = 'Brandon Dunn'
 __copyright__ = 'Copyright 2019'
 __credits__ = []
 __license__ = 'GPL'
-__version__ = '0.0.8'
+__version__ = '0.0.10'
 __maintainer__ = 'Brandon Dunn'
 __email__ = 'brdunn@ksu.edu'
 __status__ = 'in development'
@@ -49,11 +49,14 @@ class AccountingParser:
                     row = defaultdict(lambda: None, row)
                     try:
                         job = Job()
-                        if num_lines > 0 and self.__count == num_lines:
+                        if num_lines is not None and num_lines > 0 and \
+                           self.__count == num_lines:
                             break
-                        if self.__count < start:
+
+                        if start >= 0 and self.__count < start:
                             start -= 1
                             continue
+
                         self.__count += 1
                         job.account = row['Account']
                         job.admin_comment = row['AdminComment']
@@ -193,6 +196,7 @@ class AccountingParser:
                         if num_lines is not None and num_lines >= 0 and \
                            self.__count == num_lines:
                             break
+
                         if self.__count < start:
                             start -= 1
                             continue
