@@ -26,7 +26,7 @@ Programming Language :: Python :: 3.2
 Programming Language :: Python :: 3.3
 Programming Language :: Python :: 3.4
     """.splitlines(),
-    py_modules=['hpcsap', 'job']
+    py_modules=['hpcsap', 'job', 'about']
 )
 
 if __name__ == '__main__':
