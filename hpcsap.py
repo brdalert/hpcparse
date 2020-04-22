@@ -14,7 +14,7 @@ __author__ = 'Brandon Dunn'
 __copyright__ = 'Copyright 2019'
 __credits__ = []
 __license__ = 'GPL'
-__version__ = '0.0.10'
+__version__ = '0.1.0'
 __maintainer__ = 'Brandon Dunn'
 __email__ = 'brdunn@ksu.edu'
 __status__ = 'in development'
@@ -25,11 +25,14 @@ class AccountingParser:
     def __init__(self):
         self.__count = 0
 
-    # SGE parser Method Definition
+    # Method for Parsing SGE Accounting Files
     def SGE_Parser(self, file_path, num_lines=None, start=0):
 
+        # initialize joblist
         joblist = []
-        # Parse SGE File
+
+        # Setting the Colum Headers for SGE csv as they are not included in
+        # the header
         dictValues = ['qname', 'hostname', 'group', 'owner', 'job_name',
                       'job_id', 'account', 'priority', 'submission_time',
                       'start_time', 'end_time', 'failed', 'exit_status',
@@ -41,6 +44,8 @@ class AccountingParser:
                       'granted_pe', 'slots', 'task_number', 'cpu', 'mem', 'io',
                       'catagory', 'iow', 'pe_taskid', 'maxvmem', 'arid',
                       'ar_submission_time']
+
+        # Reading in the csv file and creating job objects
         try:
             with open(file_path, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, fieldnames=dictValues,
@@ -58,6 +63,7 @@ class AccountingParser:
                             continue
 
                         self.__count += 1
+                        # Need to adjust for SGE parameters. Not all are done
                         job.account = row['Account']
                         job.admin_comment = row['AdminComment']
                         job.alloc_cpus = row['AllocCPUS']
@@ -184,9 +190,13 @@ class AccountingParser:
             return
         return joblist
 
+    # Method for parsing SLURM accounting files
     def SLURM_Parser(self, file_path, num_lines=None, start=0):
+
+        # Initializing joblist
         joblist = []
-        # Parse SLURM File
+
+        # Reading in SLURM csv accounting file
         try:
             with open(file_path, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
@@ -279,7 +289,9 @@ class AccountingParser:
                         job.resv_cpu_raw = row['ResvCPURAW']
                         job.start = row['Start']
                         job.state = row['State']
-                        job.submit = row['Submit']
+                        # Replace the T that get put in during read in with a
+                        # space that should be there
+                        job.submit = row['Submit'].replace('T', ' ')
                         job.suspended = row['Suspended']
                         job.system_cpu = row['SystemCPU']
                         job.system_comment = row['SystemComment']
