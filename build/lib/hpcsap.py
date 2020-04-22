@@ -180,12 +180,12 @@ class AccountingParser:
                     except Exception as ex:
                         print(ex)
                         print('There was a parsing error on line: ' + str(
-                               self.__count) + '\n skipping line and \
+                               self.__count) + '\n\r skipping line and \
                                continuing:')
         except Exception as ex:
             print('error opening File path:' + str(self.__filepath) + ', please check\
                 filename and file path: the Exact error \
-                follows this message: \n')
+                follows this message: \n\r')
             print(ex)
             return
         return joblist
