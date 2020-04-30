@@ -12,6 +12,7 @@ Documentation for :mod:`hpcsap` module
 
    overview
    objects
+   methods
    example
    license
 
