@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
-Name: hpcparser
-Version: 0.1.6
+Name: hpcparse
+Version: 0.0.6
 Summary: Parse HPC data like users, accounting, accounts, qos, ... etc
 Home-page: https://gitlab.cs.ksu.edu/brdunn/hpsparse
 Author: Brandon Dunn

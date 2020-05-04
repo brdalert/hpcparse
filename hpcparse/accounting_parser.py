@@ -8,12 +8,10 @@ from job import Job
 
 # Accounting Parser Class Definition
 class AccountingParser:
-    def __init__(self, filepath):
-        self.__filepath = filepath
 
     # Method for Parsing SGE Accounting Files
     @classmethod
-    def sge_parser(self, num_lines=0, start=0):
+    def sge_parser(cls, filepath, num_lines=0, start=0):
         """
         sge_parser()
         Parse SGE accounting files and return a list of jobs.
@@ -37,7 +35,7 @@ class AccountingParser:
 
         # Reading in the csv file and creating job objects
         try:
-            with open(self.__filepath, 'r', newline='') as inputFile:
+            with open(filepath, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, fieldnames=dictValues,
                                          delimiter=':')
                 for row in records:
@@ -180,7 +178,7 @@ class AccountingParser:
                                count) + '\n\r skipping line and \
                                continuing:')
         except Exception as ex:
-            print('error opening File path:' + str(self.__filepath) + ', please check\
+            print('error opening File path:' + str(filepath) + ', please check\
                 filename and file path: the Exact error \
                 follows this message: \n\r')
             print(ex)
@@ -189,14 +187,14 @@ class AccountingParser:
 
     # Method for parsing SLURM accounting files
     @classmethod
-    def slurm_parser(self, num_lines=0, start=0):
+    def slurm_parser(cls, filepath, num_lines=0, start=0):
 
         # Initializing joblist
         joblist = []
         count = 0
         # Reading in SLURM csv accounting file
         try:
-            with open(self.__filepath, 'r', newline='') as inputFile:
+            with open(filepath, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
                 for row in records:
                     row = defaultdict(lambda: None, row)
@@ -338,9 +336,9 @@ class AccountingParser:
                         print(ex)
                         return
         except Exception as ex:
-            print('error opening File path:' + str(self.__filepath) + ', please check\
-                filename and file path: the Exact error \
-                follows this message: \n')
+            print("error opening File path: {},  please check filename and \
+                file path: the Exact error follows this message: "
+                  .format(str(filepath)))
             print(ex)
             return
         return joblist

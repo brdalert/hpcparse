@@ -7,14 +7,12 @@ from user import User
 
 
 class UserParser:
-    def __init__(self, filename):
-        self.__fileName = filename
-        self.__users_list = []
 
     @classmethod
-    def parse_users(self):
+    def parse_users(cls, filepath):
+        users_list = []
         try:
-            with open(self.__fileName, 'r', newline='') as inputFile:
+            with open(filepath, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
                 for row in records:
                     row = defaultdict(lambda: None, row)
@@ -35,11 +33,11 @@ class UserParser:
                         new_user.max_cpu_mins = row['MaxCPUMins']
                         new_user.qos = row['QOS']
                         new_user.def_qos = row['Def QOS']
-                        self.__users_list.append(new_user)
+                        users_list.append(new_user)
                     except Exception as ex:
                         print(ex)
                         print('error')
         except Exception as ex:
             print(ex)
             print('error')
-        return self.__users_list
+        return users_list

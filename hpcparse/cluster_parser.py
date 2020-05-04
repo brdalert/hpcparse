@@ -7,14 +7,12 @@ from cluster import Cluster
 
 
 class ClusterParser:
-    def __init__(self, filename):
-        self.__fileName = filename
-        self.__cluster_list = []
 
     @classmethod
-    def parse_clusters(self):
+    def parse_clusters(cls, filepath):
+        cluster_list = []
         try:
-            with open(self.__fileName, 'r', newline='') as inputFile:
+            with open(filepath, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
                 for row in records:
                     row = defaultdict(lambda: None, row)
@@ -35,11 +33,11 @@ class ClusterParser:
                         new_cluster.max_wall = row['MaxWall']
                         new_cluster.qos = row['QOS']
                         new_cluster.def_qos = row['Def QOS']
-                        self.__cluster_list.append(new_cluster)
+                        cluster_list.append(new_cluster)
                     except Exception as ex:
                         print(ex)
                         print('error')
         except Exception as ex:
             print(ex)
             print('error')
-        return self.__cluster_list
+        return cluster_list

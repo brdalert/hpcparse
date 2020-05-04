@@ -23,7 +23,7 @@ class QOS():
         self.max_submit_pu = None
         self.max_tres_pa = None
         self.max_jobs_pa = None
-        self.max_submit_pa
+        self.max_submit_pa = None
         self.min_tres = None
 
     def __str__(self):

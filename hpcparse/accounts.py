@@ -8,5 +8,4 @@ class Accounts:
         return """Account parameters (Name: {}, Account Description: {},
                   orginization account belongs to: {}""".format(self.account,
                                                                 self.descr,
-                                                                self.org,
-                                                                self.num_acct)
+                                                                self.org)
