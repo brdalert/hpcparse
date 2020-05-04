@@ -1,4 +1,4 @@
-class SlurmUser:
+class User:
     def __init__(self):
         self.username = None
         self.def_account = None
@@ -15,7 +15,6 @@ class SlurmUser:
         self.max_cpu_mins = None
         self.qos = None
         self.def_qos = None
-        self.num_users = None
 
     def __str__(self):
         return """Slurm User(username: {}, def_account: {}, admin: {}, cluster: {},

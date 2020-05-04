@@ -19,15 +19,15 @@ setup_args = dict(
     Intended Audience :: System Administrators
     License :: OSI Approved :: GNU General Public License v3 (GPLv3)
     Operating System :: POSIX :: Linux
-    Programming Language :: Python :: 3
-    Programming Language :: Python :: 3.0
-    Programming Language :: Python :: 3.1
-    Programming Language :: Python :: 3.2
-    Programming Language :: Python :: 3.3
     Programming Language :: Python :: 3.4
+    Programming Language :: Python :: 3.5
+    Programming Language :: Python :: 3.6
+    Programming Language :: Python :: 3.7
+    Programming Language :: Python :: 3.8
     """.splitlines(),
     py_modules=['accounting_parser', 'job', 'user_parser', 'user',
-                'accounts_parser', 'accounts', 'about']
+                'accounts_parser', 'accounts', 'about', 'cluster',
+                'cluster_parser', 'qos_parser', 'qos']
 )
 
 if __name__ == '__main__':

@@ -1,14 +1,13 @@
 import csv
 from collections import defaultdict
 
-from user import SlurmUser
+from accounts import Accounts
 
 
 class AccountsParser:
     def __init__(self):
         self.__fileName = ''
         self.__acct_list = []
-        self.__count = 0
 
     def par_slurm_acct(self, filename):
         self.__fileName = filename
@@ -18,18 +17,17 @@ class AccountsParser:
                 for row in records:
                     row = defaultdict(lambda: None, row)
                     try:
-                        user = SlurmUser()
+                        new_account = Accounts()
 
-                        user.username = row['Account']
-                        user.def_account = row['Descr']
-                        user.admin = row['Org']
+                        new_account.account = row['Account']
+                        new_account.descr = row['Descr']
+                        new_account.org = row['Org']
 
-                        self.__userslist.append(user)
-                        self.__count += 1
+                        self.__acct_list.append(new_account)
                     except Exception as ex:
                         print(ex)
                         print('error')
         except Exception as ex:
             print(ex)
             print('error')
-        return self.__userslist, self.__count
+        return self.__acct_list
