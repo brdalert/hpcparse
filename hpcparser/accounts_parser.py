@@ -5,12 +5,12 @@ from accounts import Accounts
 
 
 class AccountsParser:
-    def __init__(self):
-        self.__fileName = ''
+    def __init__(self, filename):
+        self.__fileName = filename
         self.__acct_list = []
 
-    def par_slurm_acct(self, filename):
-        self.__fileName = filename
+    @classmethod
+    def par_slurm_acct(self,):
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')

@@ -5,13 +5,13 @@ from collections import defaultdict
 from qos import QOS
 
 
-class AccountsParser:
-    def __init__(self):
+class QOSParser:
+    def __init__(self, filename):
         self.__fileName = ''
         self.__qos_list = []
 
-    def par_slurm_acct(self, filename):
-        self.__fileName = filename
+    @classmethod
+    def par_slurm_acct(self):
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')

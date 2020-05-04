@@ -5,12 +5,12 @@ from user import User
 
 
 class UserParser:
-    def __init__(self):
-        self.__fileName = ''
+    def __init__(self, filename):
+        self.__fileName = filename
         self.__userslist = []
 
-    def parse_users(self, filename):
-        self.__fileName = filename
+    @classmethod
+    def parse_users(self):
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')

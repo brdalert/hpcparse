@@ -20,6 +20,7 @@ class AccountingParser:
         self.__start = start
 
     # Method for Parsing SGE Accounting Files
+    @classmethod
     def sge_Parser(self):
         """
         sge_parser()
@@ -195,6 +196,7 @@ class AccountingParser:
         return joblist
 
     # Method for parsing SLURM accounting files
+    @classmethod
     def slurm_Parser(self):
 
         # Initializing joblist

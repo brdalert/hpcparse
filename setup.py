@@ -1,34 +1,5 @@
-from setuptools import setup, find_packages
-import about
+import setuptools
 
-with open("README.rst", "r") as fh:
-    long_description = fh.read()
-
-setup_args = dict(
-    name="hpcparse",
-    version=about.__version__,
-    author=about.__author__,
-    author_email=about.__email__,
-    description=about.__summary__,
-    long_description=long_description,
-    url=about.__uri__,
-    platforms=about.__platform__,
-    classifiers="""\
-    Development Status :: 4 - Beta
-    Environment :: Console
-    Intended Audience :: System Administrators
-    License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-    Operating System :: POSIX :: Linux
-    Programming Language :: Python :: 3.4
-    Programming Language :: Python :: 3.5
-    Programming Language :: Python :: 3.6
-    Programming Language :: Python :: 3.7
-    Programming Language :: Python :: 3.8
-    """.splitlines(),
-    py_modules=['accounting_parser', 'job', 'user_parser', 'user',
-                'accounts_parser', 'accounts', 'about', 'cluster',
-                'cluster_parser', 'qos_parser', 'qos']
-)
 
 if __name__ == '__main__':
-    setup(**setup_args)
+    setuptools.setup()
