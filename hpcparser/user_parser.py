@@ -1,13 +1,15 @@
+# Libs
 import csv
 from collections import defaultdict
 
+# Own modules
 from user import User
 
 
 class UserParser:
     def __init__(self, filename):
         self.__fileName = filename
-        self.__userslist = []
+        self.__users_list = []
 
     @classmethod
     def parse_users(self):
@@ -33,11 +35,11 @@ class UserParser:
                         new_user.max_cpu_mins = row['MaxCPUMins']
                         new_user.qos = row['QOS']
                         new_user.def_qos = row['Def QOS']
-                        self.__userslist.append(new_user)
+                        self.__users_list.append(new_user)
                     except Exception as ex:
                         print(ex)
                         print('error')
         except Exception as ex:
             print(ex)
             print('error')
-        return self.__userslist
+        return self.__users_list

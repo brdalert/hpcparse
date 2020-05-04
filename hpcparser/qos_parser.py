@@ -1,17 +1,18 @@
+# Libs
 import csv
 from collections import defaultdict
 
-# own modules
+# Own modules
 from qos import QOS
 
 
 class QOSParser:
     def __init__(self, filename):
-        self.__fileName = ''
+        self.__fileName = filename
         self.__qos_list = []
 
     @classmethod
-    def par_slurm_acct(self):
+    def parse_qos(self):
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')

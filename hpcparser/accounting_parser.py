@@ -1,8 +1,3 @@
-"""
-This Class implements a pareser for SLURM and SGE output files.
-
-GNU GPL3 licensing
-"""
 # Libs
 import csv
 from collections import defaultdict
@@ -13,22 +8,19 @@ from job import Job
 
 # Accounting Parser Class Definition
 class AccountingParser:
-    def __init__(self, filepath, num_lines=0, start=0):
-        self.__count = 0
+    def __init__(self, filepath):
         self.__filepath = filepath
-        self.__num_lines = num_lines
-        self.__start = start
 
     # Method for Parsing SGE Accounting Files
     @classmethod
-    def sge_Parser(self):
+    def sge_parser(self, num_lines=0, start=0):
         """
         sge_parser()
         Parse SGE accounting files and return a list of jobs.
         """
         # initialize joblist
         joblist = []
-
+        count = 0
         # Setting the Colum Headers for SGE csv as they are not included in
         # the header
         dictValues = ['qname', 'hostname', 'group', 'owner', 'job_name',
@@ -53,15 +45,15 @@ class AccountingParser:
                     row = defaultdict(lambda: None, row)
                     try:
                         # Break if we have reached the number of lines to read.
-                        if self.__num_lines > 0 and\
-                           self.__count == self.__num_lines:
+                        if num_lines > 0 and\
+                           count == num_lines:
                             break
 
-                        if self.__start >= 0 and self.__count < self.__start:
-                            self.__start -= 1
+                        if start >= 0 and count < start:
+                            start -= 1
                             continue
 
-                        self.__count += 1
+                        count += 1
                         # Initialize new job object
                         new_job = Job()
                         # Need to adjust for SGE parameters. Not all are done
@@ -185,7 +177,7 @@ class AccountingParser:
                     except Exception as ex:
                         print(ex)
                         print('There was a parsing error on line: ' + str(
-                               self.__count) + '\n\r skipping line and \
+                               count) + '\n\r skipping line and \
                                continuing:')
         except Exception as ex:
             print('error opening File path:' + str(self.__filepath) + ', please check\
@@ -197,11 +189,11 @@ class AccountingParser:
 
     # Method for parsing SLURM accounting files
     @classmethod
-    def slurm_Parser(self):
+    def slurm_parser(self, num_lines=0, start=0):
 
         # Initializing joblist
         joblist = []
-
+        count = 0
         # Reading in SLURM csv accounting file
         try:
             with open(self.__filepath, 'r', newline='') as inputFile:
@@ -209,15 +201,15 @@ class AccountingParser:
                 for row in records:
                     row = defaultdict(lambda: None, row)
                     try:
-                        if self.__num_lines > 0 and \
-                           self.__count == self.__num_lines:
+                        if num_lines > 0 and \
+                           count == num_lines:
                             break
 
-                        if self.__start >= 0 and self.__count < self.__start:
-                            self.__start -= 1
+                        if start >= 0 and count < start:
+                            start -= 1
                             continue
 
-                        self.__count += 1
+                        count += 1
                         new_job = Job()
                         new_job.account = row['Account']
                         new_job.admin_comment = row['AdminComment']
@@ -340,7 +332,7 @@ class AccountingParser:
                         joblist.append(new_job)
                     except Exception as ex:
                         print('There was a parsing error on line: ' +
-                              str(self.__count) + '\n skipping line and \
+                              str(count) + '\n skipping line and \
                               continuing. the Exact error follows this \
                               message: \n')
                         print(ex)

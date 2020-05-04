@@ -1,6 +1,8 @@
+# Libs
 import csv
 from collections import defaultdict
 
+# Own modules
 from accounts import Accounts
 
 
@@ -10,7 +12,7 @@ class AccountsParser:
         self.__acct_list = []
 
     @classmethod
-    def par_slurm_acct(self,):
+    def parse_slurm_acct(self,):
         try:
             with open(self.__fileName, 'r', newline='') as inputFile:
                 records = csv.DictReader(inputFile, delimiter='|')
