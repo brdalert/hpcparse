@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup_args = dict(
-    name="hpcsapb",
+    name="hpcparse",
     version=about.__version__,
     author=about.__author__,
     author_email=about.__email__,
@@ -26,7 +26,8 @@ setup_args = dict(
     Programming Language :: Python :: 3.3
     Programming Language :: Python :: 3.4
     """.splitlines(),
-    py_modules=['hpcsap', 'job', 'about']
+    py_modules=['accounting_parser', 'job', 'user_parser', 'user',
+                'accounts_parser', 'accounts', 'about']
 )
 
 if __name__ == '__main__':
