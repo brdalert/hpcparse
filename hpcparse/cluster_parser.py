@@ -3,7 +3,7 @@ import csv
 from collections import defaultdict
 
 # Own modules
-from cluster import Cluster
+from hpcparse.cluster import Cluster
 
 
 class ClusterParser:

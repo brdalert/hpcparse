@@ -34,7 +34,7 @@ class QOS():
         Max TRES Per Node: {}, Max TRES Mins: {}, Max Wall: {},
         Max TRES PU: {}, Max Jobs PU: {}, Max Submit PU: {}, Max TRES PA: {},
         Max Jobs PA: {}, Max Submit PA: {}, Min TRES: {}"""\
-            .format(self.name, self.priority, self.grace_time, self.Preempt,
+            .format(self.name, self.priority, self.grace_time, self.preempt,
                     self.preempt_mode, self.flags, self.usage_thres,
                     self.usage_factor, self.group_tres, self.group_tres_mins,
                     self.group_tres_run_mins, self.group_jobs,

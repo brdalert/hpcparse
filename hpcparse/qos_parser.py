@@ -3,7 +3,7 @@ import csv
 from collections import defaultdict
 
 # Own modules
-from qos import QOS
+from hpcparse.qos import QOS
 
 
 class QOSParser:

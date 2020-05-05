@@ -3,7 +3,7 @@ import csv
 from collections import defaultdict
 
 # Own modules
-from accounts import Accounts
+from hpcparse.accounts import Accounts
 
 
 class AccountsParser:

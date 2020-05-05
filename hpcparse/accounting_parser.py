@@ -3,7 +3,7 @@ import csv
 from collections import defaultdict
 
 # Own Modules
-from job import Job
+from hpcparse.job import Job
 
 
 # Accounting Parser Class Definition
