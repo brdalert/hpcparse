@@ -11,7 +11,7 @@ from NodeType import NodeType
 from ConfigOptions import ConfigOptions
 
 
-class SlurmConfParser:
+class ConfParser:
     def __init__(self):
         self.__nodes = []
         self.__partitions = []

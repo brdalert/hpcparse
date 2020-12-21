@@ -1,13 +1,6 @@
 """
 This library is for holding SLURM.conf node types and option data
 """
-__author__ = 'Brandon Dunn'
-__copyright__ = 'Copyright 2020, SLURM.conf Node class'
-__license__ = 'GPL'
-__version__ = '0.0.1'
-__maintainer__ = 'Brandon Dunn'
-__email__ = 'brdunn@ksu.edu'
-__status__ = 'In development'
 
 
 class NodeType:
