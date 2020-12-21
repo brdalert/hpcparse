@@ -288,10 +288,11 @@ class SlurmConfParser:
                             options.resume_timeout(x[1])
                         if 'RebootProgram' in x:
                             options.reboot_program(x[1])
-                
+
             return self.__optionss, self.__nodes, self.__partitions
 
         except Exception as ex:
             print(ex)
             print('There was a parsing error at line: ' + str(linecount))
             print(ex)
+            print(line)
