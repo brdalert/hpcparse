@@ -11,7 +11,7 @@ from hpcparse.nodetype import NodeType
 from hpcparse.configoptions import ConfigOptions
 
 
-class ConfParser:
+class SlurmConfParser:
     def __init__(self):
         self.__nodes = []
         self.__partitions = []

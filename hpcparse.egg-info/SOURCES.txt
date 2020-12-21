@@ -22,7 +22,10 @@ hpcparse/accounts.py
 hpcparse/accountsparser.py
 hpcparse/cluster.py
 hpcparse/clusterparser.py
+hpcparse/configoptions.py
 hpcparse/job.py
+hpcparse/nodetype.py
+hpcparse/partitiontype.py
 hpcparse/qos.py
 hpcparse/qosparser.py
 hpcparse/slurmconfparser.py
