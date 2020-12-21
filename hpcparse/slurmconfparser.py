@@ -292,4 +292,4 @@ class SlurmConfParser:
 
         except Exception as ex:
             print(ex)
-            print('There was a parsing error')
+            print('There was a parsing error at line: ' + str(linecount))
