@@ -8,7 +8,7 @@ GPL licensing
 # Own Modules
 from hpcparse.partitiontype import PartitionType
 from hpcparse.nodetype import NodeType
-from hpcparse.configoptions import Configoptions
+from hpcparse.configoptions import ConfigOptions
 
 
 class SlurmConfParser:
@@ -24,7 +24,7 @@ class SlurmConfParser:
         self.__filename = filename
         try:
             with open(self.__filename, 'r', newline='') as inputFile:
-                options = Configoptions()
+                options = ConfigOptions()
                 linecount = 0
                 for line in inputFile:
                     line = line.strip('\r')
