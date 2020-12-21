@@ -19,7 +19,7 @@ class SlurmConfParser:
         self.__temp = []
         self.__filename = None
 
-    def Parser(self, filename):
+    def Parse(self, filename):
 
         self.__filename = filename
         try:
