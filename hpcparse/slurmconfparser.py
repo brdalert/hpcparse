@@ -151,13 +151,13 @@ class SlurmConfParser:
                         if 'ClusterName' in x:
                             option.cluster_name = x[1]
                         if 'SlurmctldHost' in x:
-                            option.slurm_ctld_host(x[1])
+                            option.slurmctld_host(x[1])
                         if 'SlurmUser' in x:
                             option.slurm_user(x[1])
                         if 'SlurmctldPort' in x:
-                            option.slurm_ctld_port(x[1])
+                            option.slurmctld_port(x[1])
                         if 'SlurmctldSyslogDebug' in x:
-                            option.slurm_ctld_syslog_debug(x[1])
+                            option.slurmctld_syslog_debug(x[1])
                         if 'SlurmdPort' in x:
                             option.slurmd_port(x[1])
                         if 'SlurmdSyslogDebug' in x:
@@ -173,7 +173,7 @@ class SlurmConfParser:
                         if 'MpiDefault' in x:
                             option.mpi_default(x[1])
                         if 'SlurmctldPidFile' in x:
-                            option.slurm_ctld_pid_file(x[1])
+                            option.slurmctld_pid_file(x[1])
                         if 'SlurmdPidFile' in x:
                             option.slurmd_pid_file(x[1])
                         if 'ReturnToService' in x:
@@ -185,7 +185,7 @@ class SlurmConfParser:
                         if 'HealthCheckProgram' in x:
                             option.health_check_program(x[1])
                         if 'SlurmctldTimeout' in x:
-                            option.slurm_ctld_timeout(x[1])
+                            option.slurmctld_timeout(x[1])
                         if 'SlurmdTimeout' in x:
                             option.slurmd_timeout(x[1])
                         if 'InactiveLimit' in x:
@@ -255,9 +255,9 @@ class SlurmConfParser:
                         if 'FairShareDampeningFactor' in x:
                             option.fair_share_dampening_factor(x[1])
                         if 'SlurmctldDebug' in x:
-                            option.slurm_ctld_debug(x[1])
+                            option.slurmctld_debug(x[1])
                         if 'SlurmctldLogFile' in x:
-                            option.slurm_ctld_log_file(x[1])
+                            option.slurmctld_log_file(x[1])
                         if 'SlurmdDebug' in x:
                             option.slurmd_debug(x[1])
                         if 'SlurmdLogFile' in x:
