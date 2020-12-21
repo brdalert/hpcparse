@@ -8,14 +8,14 @@ GPL licensing
 # Own Modules
 from hpcparse.partitiontype import PartitionType
 from hpcparse.nodetype import NodeType
-from hpcparse.configoptions import ConfigOptions
+from hpcparse.configoptions import Configoptions
 
 
 class SlurmConfParser:
     def __init__(self):
         self.__nodes = []
         self.__partitions = []
-        self.__options = []
+        self.__options = None
         self.__temp = []
         self.__filename = None
 
@@ -24,7 +24,7 @@ class SlurmConfParser:
         self.__filename = filename
         try:
             with open(self.__filename, 'r', newline='') as inputFile:
-                option = ConfigOptions()
+                options = Configoptions()
                 linecount = 0
                 for line in inputFile:
                     line = line.strip('\r')
@@ -149,146 +149,145 @@ class SlurmConfParser:
                     else:
                         x = line.split('=')
                         if 'ClusterName' in x:
-                            option.cluster_name = x[1]
+                            options.cluster_name = x[1]
                         if 'SlurmctldHost' in x:
-                            option.slurmctld_host(x[1])
+                            options.slurmctld_host(x[1])
                         if 'SlurmUser' in x:
-                            option.slurm_user(x[1])
+                            options.slurm_user(x[1])
                         if 'SlurmctldPort' in x:
-                            option.slurmctld_port(x[1])
+                            options.slurmctld_port(x[1])
                         if 'SlurmctldSyslogDebug' in x:
-                            option.slurmctld_syslog_debug(x[1])
+                            options.slurmctld_syslog_debug(x[1])
                         if 'SlurmdPort' in x:
-                            option.slurmd_port(x[1])
+                            options.slurmd_port(x[1])
                         if 'SlurmdSyslogDebug' in x:
-                            option.slurmd_syslog_dbug(x[1])
+                            options.slurmd_syslog_dbug(x[1])
                         if 'AuthType' in x:
-                            option.auth_type(x[1])
+                            options.auth_type(x[1])
                         if 'StateSaveLocation' in x:
-                            option.state_save_location(x[1])
+                            options.state_save_location(x[1])
                         if 'SlurmdSpoolDir' in x:
-                            option.slurmd_spool_dir(x[1])
+                            options.slurmd_spool_dir(x[1])
                         if 'SwitchType' in x:
-                            option.switch_type(x[1])
+                            options.switch_type(x[1])
                         if 'MpiDefault' in x:
-                            option.mpi_default(x[1])
+                            options.mpi_default(x[1])
                         if 'SlurmctldPidFile' in x:
-                            option.slurmctld_pid_file(x[1])
+                            options.slurmctld_pid_file(x[1])
                         if 'SlurmdPidFile' in x:
-                            option.slurmd_pid_file(x[1])
+                            options.slurmd_pid_file(x[1])
                         if 'ReturnToService' in x:
-                            option.return_to_service(x[1])
+                            options.return_to_service(x[1])
                         if 'DebugFlags' in x:
-                            option.debug_flags(x[1])
+                            options.debug_flags(x[1])
                         if 'HealthCheckInterval' in x:
-                            option.health_check_interval(x[1])
+                            options.health_check_interval(x[1])
                         if 'HealthCheckProgram' in x:
-                            option.health_check_program(x[1])
+                            options.health_check_program(x[1])
                         if 'SlurmctldTimeout' in x:
-                            option.slurmctld_timeout(x[1])
+                            options.slurmctld_timeout(x[1])
                         if 'SlurmdTimeout' in x:
-                            option.slurmd_timeout(x[1])
+                            options.slurmd_timeout(x[1])
                         if 'InactiveLimit' in x:
-                            option.inactive_limit(x[1])
+                            options.inactive_limit(x[1])
                         if 'MinJobAge' in x:
-                            option.min_job_age(x[1])
+                            options.min_job_age(x[1])
                         if 'KillWait' in x:
-                            option.kill_wait(x[1])
+                            options.kill_wait(x[1])
                         if 'Waittime' in x:
-                            option.wait_time(x[1])
+                            options.wait_time(x[1])
                         if 'GroupUpdateTime' in x:
-                            option.group_update_time
+                            options.group_update_time
                         if 'GroupUpdateForce' in x:
-                            option.group_update_force(x[1])
+                            options.group_update_force(x[1])
                         if 'SchedulerType' in x:
-                            option.scheduler_type(x[1])
+                            options.scheduler_type(x[1])
                         if 'SchedulerParameters' in x:
-                            option.scheduler_parameters(x[1])
+                            options.scheduler_parameters(x[1])
                         if 'SelectType' in x:
-                            option.select_type(x[1])
+                            options.select_type(x[1])
                         if 'SelectTypeParameters' in x:
-                            option.select_type_parameters(x[1])
+                            options.select_type_parameters(x[1])
                         if 'TaskPlugin' in x:
-                            option.task_plugin(x[1])
+                            options.task_plugin(x[1])
                         if 'ProctrackType' in x:
-                            option.proctrack_type(x[1])
+                            options.proctrack_type(x[1])
                         if 'FastSchedule' in x:
-                            option.fast_schedule(x[1])
+                            options.fast_schedule(x[1])
                         if 'GresTypes' in x:
-                            option.gres_types(x[1])
+                            options.gres_types(x[1])
                         if 'MaxArraySize' in x:
-                            option.max_array_size(x[1])
+                            options.max_array_size(x[1])
                         if 'MaxJobCount' in x:
-                            option.max_job_count(x[1])
+                            options.max_job_count(x[1])
                         if 'PreemptMode' in x:
-                            option.preempt_mode(x[1])
+                            options.preempt_mode(x[1])
                         if 'PreemptType' in x:
-                            option.preempt_type(x[1])
+                            options.preempt_type(x[1])
                         if 'PrologFlags' in x:
-                            option.prolog_flags(x[1])
+                            options.prolog_flags(x[1])
                         if 'JobCompType' in x:
-                            option.job_comp_type(x[1])
+                            options.job_comp_type(x[1])
                         if 'JobSubmitPlugins' in x:
-                            option.job_submit_plugins(x[1])
+                            options.job_submit_plugins(x[1])
                         if 'PriorityFlags' in x:
-                            option.priority_flags(x[1])
+                            options.priority_flags(x[1])
                         if 'PriorityType' in x:
-                            option.priority_type(x[1])
+                            options.priority_type(x[1])
                         if 'PriorityDecayHalfLife' in x:
-                            option.priority_decay_half_life(x[1])
+                            options.priority_decay_half_life(x[1])
                         if 'PriorityCalcPeriod' in x:
-                            option.priority_calc_period(x[1])
+                            options.priority_calc_period(x[1])
                         if 'PriorityMaxAge' in x:
-                            option.priority_max_age(x[1])
+                            options.priority_max_age(x[1])
                         if 'PriorityWeightAge' in x:
-                            option.priority_weight_age(x[1])
+                            options.priority_weight_age(x[1])
                         if 'PriorityWeightFairShare' in x:
-                            option.priority_weight_fair_share(x[1])
+                            options.priority_weight_fair_share(x[1])
                         if 'PriorityWeightJobSize' in x:
-                            option.priority_weight_job_size(x[1])
+                            options.priority_weight_job_size(x[1])
                         if 'PriorityWeightPartition' in x:
-                            option.priority_weight_partition(x[1])
+                            options.priority_weight_partition(x[1])
                         if 'PriorityWeightQOS' in x:
-                            option.priority_weight_qos(x[1])
+                            options.priority_weight_qos(x[1])
                         if 'PriorityWeightTRES' in x:
-                            option.priority_weight_tres(x[1])
+                            options.priority_weight_tres(x[1])
                         if 'FairShareDampeningFactor' in x:
-                            option.fair_share_dampening_factor(x[1])
+                            options.fair_share_dampening_factor(x[1])
                         if 'SlurmctldDebug' in x:
-                            option.slurmctld_debug(x[1])
+                            options.slurmctld_debug(x[1])
                         if 'SlurmctldLogFile' in x:
-                            option.slurmctld_log_file(x[1])
+                            options.slurmctld_log_file(x[1])
                         if 'SlurmdDebug' in x:
-                            option.slurmd_debug(x[1])
+                            options.slurmd_debug(x[1])
                         if 'SlurmdLogFile' in x:
-                            option.slurmd_log_file(x[1])
+                            options.slurmd_log_file(x[1])
                         if 'JobAcctGatherType' in x:
-                            option.job_acct_gather_type(x[1])
+                            options.job_acct_gather_type(x[1])
                         if 'JobAcctGatherFrequency' in x:
-                            option.job_acct_gather_frequency(x[1])
+                            options.job_acct_gather_frequency(x[1])
                         if 'AcctGatherNodeFreq=' in x:
-                            option.acct_gather_node_freq(x[1])
+                            options.acct_gather_node_freq(x[1])
                         if 'JobAcctGatherParams' in x:
-                            option.job_acct_gather_params(x[1])
+                            options.job_acct_gather_params(x[1])
                         if 'MemLimitEnforce' in x:
-                            option.mem_limit_enforce(x[1])
+                            options.mem_limit_enforce(x[1])
                         if 'AccountingStorageEnforce' in x:
-                            option.accounting_storage_enforce(x[1])
+                            options.accounting_storage_enforce(x[1])
                         if 'AccountingStorageHost' in x:
-                            option.accounting_storage_host(x[1])
+                            options.accounting_storage_host(x[1])
                         if 'AccountingStorageType' in x:
-                            option.accounting_storage_type(x[1])
+                            options.accounting_storage_type(x[1])
                         if 'AccountingStorageTRES' in x:
-                            option.accounting_storage_tres(x[1])
+                            options.accounting_storage_tres(x[1])
                         if 'TopologyPlugin' in x:
-                            option.topology_plugin(x[1])
+                            options.topology_plugin(x[1])
                         if 'ResumeTimeout' in x:
-                            option.resume_timeout(x[1])
+                            options.resume_timeout(x[1])
                         if 'RebootProgram' in x:
-                            option.reboot_program(x[1])
-                        self.__options.append(option)
+                            options.reboot_program(x[1])
                 linecount += 1
-            return self.__options, self.__nodes, self.__partitions
+            return self.__optionss, self.__nodes, self.__partitions
 
         except Exception as ex:
             print(ex)
