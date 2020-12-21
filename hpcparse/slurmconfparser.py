@@ -288,7 +288,7 @@ class SlurmConfParser:
                             option.reboot_program(x[1])
                         self.__options.append(option)
                 linecount += 1
-                return self.__options, self.__nodes, self.__partitions
+            return self.__options, self.__nodes, self.__partitions
 
         except Exception as ex:
             print(ex)
