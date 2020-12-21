@@ -6,9 +6,9 @@ GPL licensing
 # Libs
 
 # Own Modules
-from PartitionType import PartitionType
-from NodeType import NodeType
-from ConfigOptions import ConfigOptions
+from hpcparse.partitiontype import PartitionType
+from hpcparse.nodetype import NodeType
+from hpcparse.configoptions import ConfigOptions
 
 
 class ConfParser:

@@ -27,7 +27,7 @@ hpcparse/qos.py
 hpcparse/qosparser.py
 hpcparse/slurmconfparser.py
 hpcparse/user.py
-hpcparse/user_parser.py
+hpcparse/userparser.py
 hpcparse.egg-info/PKG-INFO
 hpcparse.egg-info/SOURCES.txt
 hpcparse.egg-info/dependency_links.txt
