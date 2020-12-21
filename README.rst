@@ -11,6 +11,8 @@ Parsers available currently are:
     - Parser that get a list of accounts "-"
 * ClusterParser "*"
     - Parser that get a list of clusters and associated information "-"
+* ConfigParser "*"
+    - Parser that reads in the scheduler's configuration imformation "-"
 * QOSParser "*" 
     - Parser that gets a list of QOS's for the cluster "-"
 * UserPaarser "*"
