@@ -20,13 +20,15 @@ class SlurmConfParser:
         self.__filename = None
 
     def Parse(self, filename):
-
+        linecount = 0
         self.__filename = filename
+        print(self.__filename)
         try:
             with open(self.__filename, 'r', newline='') as inputFile:
                 options = ConfigOptions()
-                linecount = 0
+
                 for line in inputFile:
+                    linecount += 1
                     line = line.strip('\r')
                     if '#' in line:
                         continue
@@ -286,7 +288,7 @@ class SlurmConfParser:
                             options.resume_timeout(x[1])
                         if 'RebootProgram' in x:
                             options.reboot_program(x[1])
-                linecount += 1
+                
             return self.__optionss, self.__nodes, self.__partitions
 
         except Exception as ex:
