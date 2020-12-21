@@ -15,7 +15,7 @@ class SlurmConfParser:
     def __init__(self):
         self.__nodes = []
         self.__partitions = []
-        self.__options = None
+        self.__options = []
         self.__temp = []
         self.__filename = None
 
