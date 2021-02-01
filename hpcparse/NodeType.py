@@ -18,7 +18,7 @@ class NodeType:
         self.deny_users = None
         self.features = None
         self.frontend_name = None
-        self.frontend_addr + None
+        self.frontend_addr = None
         self.gres = None
         self.mem_spec_limit = None
         self.node_addr = None
