@@ -15,7 +15,7 @@ class SlurmConfParser:
     def __init__(self):
         self.__nodes = []
         self.__partitions = []
-        self.__options = None
+        self.__options = ConfigOptions()
         self.__temp = []
         self.__filename = None
 
@@ -25,7 +25,6 @@ class SlurmConfParser:
         print(self.__filename)
         try:
             with open(self.__filename, 'r', newline='') as inputFile:
-                self.__options = ConfigOptions()
 
                 for line in inputFile:
                     linecount += 1
@@ -101,6 +100,7 @@ class SlurmConfParser:
                             else:
                                 print('Error parsing node information from\
                                     config file on line: {}', linecount)
+                        self.__nodes.append(node)
 
                     elif 'PartitionName' in line:
                         partition = PartitionType()
@@ -147,6 +147,7 @@ class SlurmConfParser:
                                 partition.select_type_parameters = y[1]
                                 partition.state = y[1]
                                 partition.tres_billing_weights = y[1]
+                        self.__partitions.append(partition)
 
                     else:
                         x = line.split('=')
