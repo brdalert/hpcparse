@@ -23,12 +23,10 @@ class SlurmConfParser:
         linecount = 0
         self.__filename = filename
         self.__options = ConfigOptions()
-        print(self.__filename)
         try:
             with open(self.__filename, 'r', newline='') as inputFile:
 
                 for line in inputFile:
-                    
                     linecount += 1
                     line = line.strip('\r')
                     if '#' in line:
@@ -152,8 +150,6 @@ class SlurmConfParser:
                         self.__partitions.append(partition)
 
                     else:
-                        print(self.__options)
-                        print()
                         x = line.split('=')
                         if 'ClusterName' in x:
                             self.__options.cluster_name = x[1]
