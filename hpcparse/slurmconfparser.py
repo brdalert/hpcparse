@@ -39,7 +39,7 @@ class SlurmConfParser:
                             y = column.split('=')
                             if 'NodeName' in y:
                                 node.node_name = y[1]
-                            if 'AllowGrpups' in y:
+                            elif 'AllowGrpups' in y:
                                 node.allow_groups = y[1]
                             elif 'AllowUsers' in y:
                                 node.allow_users = y[1]
@@ -109,7 +109,9 @@ class SlurmConfParser:
                         x = line.split(' ')
                         for column in x:
                             y = column.split('=')
-                            if 'ALLOCNode' in y:
+                            if 'PartitionName' in y:
+                                partition.partition_name = y[1]
+                            elif 'ALLOCNode' in y:
                                 partition.alloc_nodes = y[1]
                             elif 'AllowAccounts' in y:
                                 partition.allow_accounts = y[1]
