@@ -37,6 +37,8 @@ class SlurmConfParser:
                         x = line.split(' ')
                         for column in x:
                             y = column.split('=')
+                            if 'NodeName' in y:
+                                node.node_name = y[1]
                             if 'AllowGrpups' in y:
                                 node.allow_groups = y[1]
                             elif 'AllowUsers' in y:
@@ -89,7 +91,7 @@ class SlurmConfParser:
                                 node.sockets_per_board = y[1]
                             elif 'State' in y:
                                 node.state = y[1]
-                            elif 'THreadsPerCore' in y:
+                            elif 'ThreadsPerCore' in y:
                                 node.threads_per_core = y[1]
                             elif 'TmpDisk' in y:
                                 node.tmp_disk = y[1]
