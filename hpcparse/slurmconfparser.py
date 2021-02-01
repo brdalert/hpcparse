@@ -67,7 +67,7 @@ class SlurmConfParser:
                                 node.frontend_name = y[1]
                             elif 'FrontEndADDR' in y:
                                 node.frontend_addr = y[1]
-                            elif 'GRES' in y:
+                            elif 'Gres' in y:
                                 node.gres = y[1]
                             elif 'MemSpecLimit' in y:
                                 node.mem_spec_limit = y[1]
