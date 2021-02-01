@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: hpcparse
-Version: 0.1.27
+Version: 0.1.29
 Summary: Parse HPC data like users, accounting, accounts, qos, ... etc
 Home-page: https://gitlab.cs.ksu.edu/brdunn/hpsparse
 Author: Brandon Dunn
@@ -38,10 +38,9 @@ Classifier: Environment :: Console
 Classifier: Intended Audience :: System Administrators
 Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
 Classifier: Operating System :: POSIX :: Linux
-Classifier: Programming Language :: Python :: 3.4
-Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.8
 Requires-Python: >=3.4
 Provides-Extra: docs
