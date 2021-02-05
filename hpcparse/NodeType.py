@@ -53,7 +53,6 @@ class NodeType:
                                              self.cpu_bind,
                                              self.cpus,
                                              self.cpus_spec_list,
-                                             self.co,
                                              self.deny_groups,
                                              self.deny_users,
                                              self.features,
