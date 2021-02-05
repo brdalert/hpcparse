@@ -7,17 +7,30 @@ Parsers available currently are:
 
 * AccountingParser "*"
     - Parser that gets a list of jobs based on accounting information "-"
+    - Returns a list of job objects "-"
+
 * AccountsParser "*"
     - Parser that get a list of accounts "-"
+    - Returns list of account objects "-"
+
 * ClusterParser "*"
     - Parser that get a list of clusters and associated information "-"
+    - Returns a list of cluster object "-"
+
 * ConfigParser "*"
     - Parser that reads in the scheduler's configuration imformation "-"
+    - Returns  a configuration options object
+    - Returns a list of node objects "-"
+    - Returns a list of partition objects "-"
+    - ordering a out put is configuration options, nodes, partitions
+
 * QOSParser "*" 
     - Parser that gets a list of QOS's for the cluster "-"
-* UserPaarser "*"
-    - Parser that gets a list of Users for the HPC "-"
+    - Returns a list of qos objects "-" 
 
+* UserParser "*"
+    - Parser that gets a list of Users for the HPC "-"
+    - Returns a list of user objects "-"
+       
 Prerequisites
 ^^^^^^^^^^^^^
-python csv package
