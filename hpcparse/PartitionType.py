@@ -52,7 +52,7 @@ class PartitionType:
         max_cpus_per_node:{}, max_mem_per_cpu:{}, max_mem_per_node:{},
         max_Nodes:{}, over_subscribe:{}, max_time:{}, nodes:{},
         preempt_mode:{}, priority_job_factor:{}, priority_tier:{}, qos:{},
-        req_resv:{}, root_only:{}, select_type_parameters:{}, state:{}, 
+        req_resv:{}, root_only:{}, select_type_parameters:{}, state:{},
         tres_billing_weights:{})""".format(
             self.partition_name,
             self.alloc_nodes,
@@ -80,7 +80,7 @@ class PartitionType:
             self.max_Nodes,
             self.over_subscribe,
             self.max_time,
-            self.nodes,                                           
+            self.nodes,
             self.preempt_mode,
             self.priority_job_factor,
             self.priority_tier,
