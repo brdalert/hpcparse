@@ -39,7 +39,7 @@ class NodeType:
     def __str__(self):
         return """Job ( allow_groups:{}, allow_users:{}, bcast_addr:{},
         boards:{}, cores_spec_count:{}, cores_per_socket:{}, cpu_bind:{},
-        cpus:{}, cpus_spec_list:{}, co:{}, deny_groups:{}, deny_users:{},
+        cpus:{}, cpus_spec_list:{}, deny_groups:{}, deny_users:{},
         features:{}, frontend_name:{}, frontend_addr:{}, gres:{},
         mem_spec_limit:{}, node_addr:{}, node_hostname:{}, node_name:{},
         port:{}, procs:{}, real_Memory:{}, reason:{}, sockets:{},
