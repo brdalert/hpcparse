@@ -37,14 +37,14 @@ class NodeType:
         self.weight = None
 
     def __str__(self):
-        return """node_name{}: allow_groups:{}, allow_users:{}, bcast_addr:{},
+        return """node_name{}( allow_groups:{}, allow_users:{}, bcast_addr:{},
         boards:{}, cores_spec_count:{}, cores_per_socket:{}, cpu_bind:{},
         cpus:{}, cpus_spec_list:{}, deny_groups:{}, deny_users:{},
         features:{}, frontend_name:{}, frontend_addr:{}, gres:{},
         mem_spec_limit:{}, node_addr:{}, node_hostname:{},
         port:{}, procs:{}, real_Memory:{}, reason:{}, sockets:{},
         sockets_per_board:{}, state:{}, threads_per_core:{}, tmp_disk:{},
-        tres_weights:{}, weight:{}""".format(
+        tres_weights:{}, weight:{})""".format(
             self.node_name,
             self.allow_groups,
             self.allow_users,

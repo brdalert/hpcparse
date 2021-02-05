@@ -44,7 +44,7 @@ class PartitionType:
         self.tres_billing_weights = None
 
     def __str__(self):
-        return """partition_name:{}: alloc_nodes:{}, allow_accounts:{}, allow_groups:{},
+        return """partition_name{}( alloc_nodes:{}, allow_accounts:{}, allow_groups:{},
         allow_qos:{}, alternate:{}, cpubind:{}, default:{}, def_cpu_per_gpu:{},
         def_mem_per_cpu:{}, def_mem_per_gpu:{}, def_mem_per_node:{},
         deny_accounts:{}, deny_qos:{}, default_time:{}, disable_root_jobs:{},
@@ -53,7 +53,7 @@ class PartitionType:
         max_Nodes:{}, over_subscribe:{}, max_time:{}, nodes:{},
         preempt_mode:{}, priority_job_factor:{}, priority_tier:{}, qos:{},
         req_resv:{}, root_only:{}, select_type_parameters:{}, state:{}, 
-        tres_billing_weights:{}""".format(self.partition_name,
+        tres_billing_weights:{})""".format(self.partition_name,
                                           self.alloc_nodes,
                                           self.allow_accounts,
                                           self.allow_groups,
