@@ -7,9 +7,9 @@ GPL licensing
 import traceback
 
 # Own Modules
-from hpcparse.partitiontype import PartitionType
-from hpcparse.nodetype import NodeType
-from hpcparse.configoptions import ConfigOptions
+from hpcparse.PartitionType import PartitionType
+from hpcparse.NodeType import NodeType
+from hpcparse.ConfigOptions import ConfigOptions
 
 
 class SlurmConfParser:
