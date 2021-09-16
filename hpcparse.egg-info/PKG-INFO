@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: hpcparse
-Version: 0.1.42
+Version: 0.1.43
 Summary: Parse HPC data like users, accounting, accounts, qos, ... etc
-Home-page: https://gitlab.cs.ksu.edu/brdunn/hpsparse
+Home-page: https://github.com/brdalert/hpcparse
 Author: Brandon Dunn
-Author-email: brdunn@ksu.edu
+Author-email: brandondunn_21@yahoo.com
 License: UNKNOWN
-Project-URL: Documentation, https://gitlab.cs.ksu.edu/brdunn/hpsparse
+Project-URL: Documentation, https://github.com/brdalert/hpcparse
 Description: High Performance Computing Accounting parser
         ============================================
         
